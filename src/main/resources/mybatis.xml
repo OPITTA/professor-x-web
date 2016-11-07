@@ -64,6 +64,11 @@
             <ref bean="connectionPool"/>
         </constructor-arg>
     </bean>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+    </bean>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource">
             <ref bean="dataSource"/>
@@ -72,9 +77,8 @@
             <value>classpath:mybatis-config.xml</value>
         </property>
     </bean>
-    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
-        <property name="mapperInterface">
-            <value>com.github.professor_x_web.mapper.UserMapper</value>
-        </property>
+    <bean id="jdbcTemplate" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.github.professor_x_web.mapper" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 </beans>

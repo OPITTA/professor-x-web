@@ -14,6 +14,7 @@ INSERT INTO `user` (`account`, `passwd`, `email`, `user_role`, `valied`)VALUES("
 
 CREATE TABLE IF NOT EXISTS `computer` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
     `cpu_id` int(11) NOT NULL,
     `mem_id` int(11) NOT NULL,
     `dist_id` int(11) NOT NULL,

@@ -6,16 +6,30 @@
 
     <settings>
         <setting name="cacheEnabled" value="true"/>
-        <!--        <setting name="lazyLoadingEnabled" value="true"/>
-        <setting name="aggressiveLazyLoading" value="false"/>-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
 
     <typeAliases>
         <typeAlias type="com.github.professor_x_web.model.User" alias="User"/>
+        <typeAlias type="com.github.professor_x_web.model.Computer" alias="Computer"/>
+        <typeAlias type="com.github.professor_x_web.model.Cpu" alias="Cpu"/>
+        <typeAlias type="com.github.professor_x_web.model.Mem" alias="Mem"/>
+        <typeAlias type="com.github.professor_x_web.model.Dist" alias="Dist"/>
+        <typeAlias type="com.github.professor_x_web.model.SolidDist" alias="SolidDist"/>
+        <typeAlias type="com.github.professor_x_web.model.Report" alias="Report"/>
+        <typeAlias type="com.github.professor_x_web.model.Data" alias="Data"/>
     </typeAliases>
 
     <mappers>
         <mapper resource="UserMapper.xml" />
+        <mapper resource="ComputerMapper.xml" />
+        <mapper resource="CpuMapper.xml" />
+        <mapper resource="MemMapper.xml" />
+        <mapper resource="DistMapper.xml" />
+        <mapper resource="SolidDistMapper.xml" />
+        <mapper resource="ReportMapper.xml" />
+        <mapper resource="DataMapper.xml" />
     </mappers>
 
 </configuration>
