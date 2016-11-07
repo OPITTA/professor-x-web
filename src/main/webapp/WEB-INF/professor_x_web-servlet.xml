@@ -27,6 +27,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/report/**" />
+            <mvc:mapping path="/computer/**" />
             <bean class="com.github.professor_x_web.controller.core.CommonRoleInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>

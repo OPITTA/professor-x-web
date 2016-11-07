@@ -1,0 +1,5 @@
+<div class="row-fluid">
+<ul class="nav nav-tabs">
+<li#if($tab_bar=="list") class="active" #end><a href="/professor_x_web/computer/list">列表</a></li>
+</ul>
+</div>

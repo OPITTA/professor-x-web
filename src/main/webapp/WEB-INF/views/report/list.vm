@@ -1,0 +1,22 @@
+#set($top_menu="report")
+#set($side_bar="report")
+#set($tab_bar="list")
+#parse("shared/header.vm")
+#parse("shared/top_menu.vm")
+#parse("shared/report_side_bar.vm")
+#parse("shared/report_tab_bar.vm")
+<div class="row-fluid">
+<table class="table">
+  <thead>
+    <tr>
+        <th>ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+#parse("shared/footer.vm")
