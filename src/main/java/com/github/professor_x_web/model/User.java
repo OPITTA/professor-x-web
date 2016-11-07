@@ -14,8 +14,6 @@ public class User {
 
     private Integer userRole;
 
-    private Integer platformId;
-
     private Integer valied;
 
     private Date createTime;
@@ -64,14 +62,6 @@ public class User {
 
     public void setUserRole(Integer userRole) {
         this.userRole = userRole;
-    }
-
-    public Integer getPlatformId() {
-        return platformId;
-    }
-
-    public void setPlatformId(Integer platformId) {
-        this.platformId = platformId;
     }
 
     public Integer getValied() {

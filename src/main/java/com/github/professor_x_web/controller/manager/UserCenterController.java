@@ -1,12 +1,10 @@
 package com.github.professor_x_web.controller.manager;
 
-import com.github.professor_x_web.constent.Config;
 import com.github.professor_x_web.model.User;
 import com.github.professor_x_web.constent.UserRole;
 import com.github.professor_x_web.service.UserService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,11 +31,7 @@ public class UserCenterController {
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String listAction(HttpServletRequest httpServletRequest, Model model) {
-        HttpSession httpSession = httpServletRequest.getSession();
-        Integer platformId = (Integer) httpSession.getAttribute(Config.PLATFORM_ID);
-        User user = new User();
-        user.setPlatformId(platformId);
-        List<User> users = userService.selectAllSelective(user);
+        List<User> users = userService.selectAllSelective(null);
         model.addAttribute("users", users);
         return "/manager/user_center/list";
     }
@@ -69,9 +63,6 @@ public class UserCenterController {
             ok = false;
         } else {
             user.setUserRole(UserRole.COMMON.getId());
-            HttpSession httpSession = httpServletRequest.getSession();
-            Integer platformId = (Integer) httpSession.getAttribute(Config.PLATFORM_ID);
-            user.setPlatformId(platformId);
             ok = this.userService.createUser(user);
         }
         if (ok) {
@@ -83,34 +74,26 @@ public class UserCenterController {
 
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public String deleteAction(HttpServletRequest httpServletRequest) {
-        HttpSession httpSession = httpServletRequest.getSession();
-        Integer platformId = (Integer) httpSession.getAttribute(Config.PLATFORM_ID);
         String account = httpServletRequest.getParameter("account");
         if (account != null && !"".equals(account)) {
-            userService.addBlacklist(platformId, account);
+            userService.addBlacklist(account);
         }
         return "redirect:/manager/user_center/list";
     }
 
     @RequestMapping(value = "change_passwd_form", method = RequestMethod.GET)
     public String changePasswdFormAction(HttpServletRequest httpServletRequest, Model model) {
-        HttpSession httpSession = httpServletRequest.getSession();
-        Integer platformId = (Integer) httpSession.getAttribute(Config.PLATFORM_ID);
-        User user = new User();
-        user.setPlatformId(platformId);
-        List<User> users = userService.selectAllSelective(user);
+        List<User> users = userService.selectAllSelective(null);
         model.addAttribute("users", users);
         return "/manager/user_center/change_passwd_form";
     }
 
     @RequestMapping(value = "do_change_passwd", method = RequestMethod.POST)
     public String doChangePasswdAction(HttpServletRequest httpServletRequest) {
-        HttpSession httpSession = httpServletRequest.getSession();
-        Integer platformId = (Integer) httpSession.getAttribute(Config.PLATFORM_ID);
         String account = httpServletRequest.getParameter("account");
         String passwd = httpServletRequest.getParameter("passwd");
         if (account != null && !"".equals(account)) {
-            userService.changePasswd(platformId, account, passwd);
+            userService.changePasswd(account, passwd);
         }
         return "redirect:/manager/user_center/change_passwd_form";
     }

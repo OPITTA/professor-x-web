@@ -1,18 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <configuration scan="true" debug="true">
-    <property name="REALM_ID" value="professor_x_web" />
+    <property name="NAME" value="professor_x_web" />
     <property name="LOG_HOME_DIR" value="./professor_x_web" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>DEBUG</level>
-        </filter>
-        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
-            <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
-                <marker>USER.LOGIN</marker>
-            </evaluator>
-            <OnMismatch>ACCEPT</OnMismatch>
-            <OnMatch>DENY</OnMatch>
         </filter>
         <encoder>
             <charset>UTF-8</charset>
@@ -26,16 +19,9 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
         </filter>
-        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
-            <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
-                <marker>USER.LOGIN</marker>
-            </evaluator>
-            <OnMismatch>ACCEPT</OnMismatch>
-            <OnMatch>DENY</OnMatch>
-        </filter>
-        <file>${LOG_HOME_DIR}/${REALM_ID}-console.log</file>
+        <file>${LOG_HOME_DIR}/${NAME}-console.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME_DIR}/${REALM_ID}-console.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <fileNamePattern>${LOG_HOME_DIR}/${NAME}-console.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
         </rollingPolicy>
         <encoder>
             <charset>UTF-8</charset>
@@ -51,9 +37,9 @@
             <onMismatch>DENY</onMismatch>
             <onMatch>ACCEPT</onMatch>
         </filter>
-        <file>${LOG_HOME_DIR}/${REALM_ID}-error.log</file>
+        <file>${LOG_HOME_DIR}/${NAME}-error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME_DIR}/${REALM_ID}-error.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <fileNamePattern>${LOG_HOME_DIR}/${NAME}-error.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
         </rollingPolicy>
         <encoder>
             <charset>UTF-8</charset>

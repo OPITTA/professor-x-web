@@ -15,11 +15,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  *
- * @author xin.cao@100credit.com
+ * @author 510655387@qq.com
  */
 public class AdminRoleInterceptor extends HandlerInterceptorAdapter {
 
-    private static final Logger logger = LoggerFactory.getLogger(SuperAdminRoleInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(AdminRoleInterceptor.class);
     private static final String defaultUrl = "/forbidden";
 
     @Override
@@ -34,6 +34,7 @@ public class AdminRoleInterceptor extends HandlerInterceptorAdapter {
             isOk = false;
         }
         if (!isOk) {
+            logger.warn("requst = {} 会话过期或者异常访问", request.toString());
             ModelAndView mv = new ModelAndView(defaultUrl);
             mv.addObject("forward", url);
             throw new ModelAndViewDefiningException(mv);
@@ -52,9 +53,6 @@ public class AdminRoleInterceptor extends HandlerInterceptorAdapter {
                 }
                 if (userRole.contains(UserRole.ADMIN.getKey())) {
                     modelAndView.addObject(UserRole.ADMIN.getKey(), UserRole.ADMIN.getKey());
-                }
-                if (userRole.contains(UserRole.SUPER_ADMIN.getKey())) {
-                    modelAndView.addObject(UserRole.SUPER_ADMIN.getKey(), UserRole.SUPER_ADMIN.getKey());
                 }
             }
             modelAndView.addObject("DateUtil", DateUtil.getInstance());

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.github.professor_x_web.mapper.UserMapper" >
-    <resultMap id="BaseResultMap" type="User" >
+    <resultMap id="BaseResultMap" type="com.github.professor_x_web.model.User" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="account" property="account" jdbcType="VARCHAR" />
         <result column="passwd" property="passwd" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
         <result column="user_role" property="userRole" jdbcType="INTEGER" />
-        <result column="platform_id" property="platformId" jdbcType="INTEGER" />
         <result column="valied" property="valied" jdbcType="INTEGER" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id, account, passwd, email, user_role, platform_id, valied, create_time
+        id, account, passwd, email, user_role, valied, create_time
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select 
@@ -20,7 +19,7 @@
         from user
         where id = #{id,jdbcType=INTEGER}
     </select>
-    <select id="selectSelective" resultMap="BaseResultMap" parameterType="User" >
+    <select id="selectSelective" resultMap="BaseResultMap" parameterType="com.github.professor_x_web.model.User" >
         select 
         <include refid="Base_Column_List" />
         from user
@@ -36,9 +35,6 @@
         </if>
         <if test="userRole != null" >
             and user_role = #{userRole,jdbcType=INTEGER}
-        </if>
-        <if test="platformId != null" >
-            and platform_id = #{platformId,jdbcType=INTEGER}
         </if>
         <if test="valied != null" >
             and valied = #{valied,jdbcType=INTEGER}
@@ -53,7 +49,7 @@
             and create_time &lt; #{endTime,jdbcType=VARCHAR}
         </if>
     </select>
-    <select id="selectAllSelective" resultMap="BaseResultMap" parameterType="User" >
+    <select id="selectAllSelective" resultMap="BaseResultMap" parameterType="com.github.professor_x_web.model.User" >
         select 
         <include refid="Base_Column_List" />
         from user
@@ -69,9 +65,6 @@
         </if>
         <if test="userRole != null" >
             and user_role = #{userRole,jdbcType=INTEGER}
-        </if>
-        <if test="platformId != null" >
-            and platform_id = #{platformId,jdbcType=INTEGER}
         </if>
         <if test="valied != null" >
             and valied = #{valied,jdbcType=INTEGER}
@@ -90,15 +83,15 @@
         delete from user
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="User" >
+    <insert id="insert" parameterType="com.github.professor_x_web.model.User" >
         insert into user (id, account, passwd, 
-        email, user_role, platform_id, 
-        valied, create_time)
+        email, user_role, valied, 
+        create_time)
         values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
-        #{email,jdbcType=VARCHAR}, #{userRole,jdbcType=INTEGER}, #{platformId,jdbcType=INTEGER}, 
-        #{valied,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+        #{email,jdbcType=VARCHAR}, #{userRole,jdbcType=INTEGER}, #{valied,jdbcType=INTEGER}, 
+        #{createTime,jdbcType=TIMESTAMP})
     </insert>
-    <insert id="insertSelective" parameterType="User" >
+    <insert id="insertSelective" parameterType="com.github.professor_x_web.model.User" >
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -115,9 +108,6 @@
             </if>
             <if test="userRole != null" >
                 user_role,
-            </if>
-            <if test="platformId != null" >
-                platform_id,
             </if>
             <if test="valied != null" >
                 valied,
@@ -142,9 +132,6 @@
             <if test="userRole != null" >
                 #{userRole,jdbcType=INTEGER},
             </if>
-            <if test="platformId != null" >
-                #{platformId,jdbcType=INTEGER},
-            </if>
             <if test="valied != null" >
                 #{valied,jdbcType=INTEGER},
             </if>
@@ -153,7 +140,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="User" >
+    <update id="updateByPrimaryKeySelective" parameterType="com.github.professor_x_web.model.User" >
         update user
         <set >
             <if test="account != null" >
@@ -168,9 +155,6 @@
             <if test="userRole != null" >
                 user_role = #{userRole,jdbcType=INTEGER},
             </if>
-            <if test="platformId != null" >
-                platform_id = #{platformId,jdbcType=INTEGER},
-            </if>
             <if test="valied != null" >
                 valied = #{valied,jdbcType=INTEGER},
             </if>
@@ -180,13 +164,12 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="User" >
+    <update id="updateByPrimaryKey" parameterType="com.github.professor_x_web.model.User" >
         update user
         set account = #{account,jdbcType=VARCHAR},
         passwd = #{passwd,jdbcType=VARCHAR},
         email = #{email,jdbcType=VARCHAR},
         user_role = #{userRole,jdbcType=INTEGER},
-        platform_id = #{platformId,jdbcType=INTEGER},
         valied = #{valied,jdbcType=INTEGER},
         create_time = #{createTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=INTEGER}

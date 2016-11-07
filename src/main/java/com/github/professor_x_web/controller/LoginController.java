@@ -67,15 +67,10 @@ public class LoginController {
             HttpSession httpSession = httpServletRequest.getSession(true);
             UserRole userRole = UserRole.fromId(user.getUserRole());
             httpSession.setAttribute(Config.USER_ROLE, userRole.getKey());
-            if (userRole != UserRole.SUPER_ADMIN) {
-                httpSession.setAttribute(Config.PLATFORM_ID, user.getPlatformId());
-            } else {
-                httpSession.setAttribute(Config.PLATFORM_ID, -1);
-            }
             // 登录成功, 跳转的界面
             return "redirect:/manager/user_center/list";
         }
-        logger.error("login error account={}", user.getAccount());
+        logger.error("account={} 登陆异常", user.getAccount());
         return "redirect:/login_form";
     }
 }

@@ -3,7 +3,7 @@ package com.github.professor_x_web.constent;
 /**
  * 正则表达式
  *
- * @author xin.cao@100credit.com
+ * @author 510655387@qq.com
  */
 public class PatternConstant {
 

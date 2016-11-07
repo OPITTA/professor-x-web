@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github</groupId>
     <artifactId>professor_x_web</artifactId>
-    <version>1.0.2</version>
+    <version>0.0.0</version>
     <packaging>war</packaging>
     <name>professor_x_web</name>
     <properties>
@@ -15,6 +15,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>3.0-alpha-1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -39,7 +40,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.1.2</version>
+            <version>1.1.7</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -51,7 +52,6 @@
             <artifactId>commons-lang</artifactId>
             <version>2.4</version>
         </dependency>
-        <!-- 持久层(DBCP)使用 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
@@ -67,7 +67,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.30</version>
         </dependency>
-        <!-- 持久层(ORM)使用 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
@@ -77,12 +76,6 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>1.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.4</version>
-            <classifier>jdk13</classifier>
         </dependency>
         <dependency>
             <groupId>javax.mail</groupId>
@@ -113,18 +106,11 @@
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <version>1.8.4</version>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.8.1</version>
+            <version>4.3.6</version>
         </dependency>
     </dependencies>
     <build>
@@ -139,5 +125,19 @@
                 </includes>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>8080</port>
+                    <path>/professor_x_web</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <finalName>professor_x_web</finalName>
+                    <server>tomcat7</server>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

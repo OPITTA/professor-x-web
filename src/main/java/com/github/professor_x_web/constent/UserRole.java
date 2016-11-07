@@ -2,15 +2,13 @@ package com.github.professor_x_web.constent;
 
 /**
  *
- * @author xin.cao@100credit.com
+ * @author 510655387@qq.com
  */
 public enum UserRole {
 
     COMMON(1, "common"),
     ADMIN(2, "admin"),
-    SUPER_ADMIN(3, "super_admin"),
-    COMMON_ADMIN(4, "common:admin"),
-    COMMON_ADMIN_SUPER_ADMIN(5, "common:admin:super_admin");
+    COMMON_ADMIN(3, "common:admin");
 
     private int id;
     private String key;

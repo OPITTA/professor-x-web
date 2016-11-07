@@ -62,23 +62,22 @@ public class UserService {
             if (user.getPasswd().trim().equalsIgnoreCase(pass) && ResultStatus.isYES(realUser.getValied())) {
                 isOk = true;
                 user.setUserRole(realUser.getUserRole());
-                user.setPlatformId(realUser.getPlatformId());
             }
         }
 
         return isOk;
     }
 
-    public void addBlacklist(Integer platformId, String account) {
-        User user = getUserByPlatformIdAndAccount(platformId, account);
+    public void addBlacklist(String account) {
+        User user = getUserByAccount(account);
         if (user != null) {
             user.setValied(ResultStatus.NO.getNo());
             userMapper.updateByPrimaryKeySelective(user);
         }
     }
 
-    public void changePasswd(Integer platformId, String account, String passwd) {
-        User user = getUserByPlatformIdAndAccount(platformId, account);
+    public void changePasswd(String account, String passwd) {
+        User user = getUserByAccount(account);
         if (user != null) {
             user.setPasswd(MdImplement.encodeMD5To32(passwd.trim()));
             userMapper.updateByPrimaryKeySelective(user);
@@ -87,13 +86,6 @@ public class UserService {
 
     public User getUserByAccount(String account) {
         User user = new User();
-        user.setAccount(account);
-        return selectSelective(user);
-    }
-
-    public User getUserByPlatformIdAndAccount(Integer platformId, String account) {
-        User user = new User();
-        user.setPlatformId(platformId);
         user.setAccount(account);
         return selectSelective(user);
     }
