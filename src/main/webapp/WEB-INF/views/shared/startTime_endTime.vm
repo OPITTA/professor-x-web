@@ -1,0 +1,41 @@
+<div class="row-fluid">
+  <form class="form-inline well well-small" action="$!submit_form_url" method="GET" id="find_form">
+    <div class="control-group">
+      <div class="controls">
+        <div class="controls controls-row">
+            <input type="text" id="user_id" name="user_id" class="input-medium" value="" placeholder="手机号码" />
+            <input type="text" id="start_time" name="start_time" class="input-small" value="" placeholder="开始时间" />
+            <input type="text" id="end_time" name="end_time" class="input-small" value=""  placeholder="结束时间">
+            <button type="submit" class="btn btn-primary">查询</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script language="javascript">
+    $(document).ready(function(){
+            $("#find_form").validate({
+                   rules: {
+                       start_time: {
+                           required: true,
+                       },
+                       end_time: {
+                           required: true
+                       }
+                   }
+             });
+            var duration = 1;
+            #if ($!duration)
+                duration = $!duration;
+            #end
+            $('#start_time').datepicker({
+                onSelect: function(dateText, inst){
+                var dtEnd = new Date();
+                dtEnd.setTime(Date.parse(dateText) + duration * 86400000);
+                $('#end_time').val($.datepicker.formatDate('yy-mm-dd', dtEnd));
+              }
+            });
+            $('#end_time').datepicker();
+    });
+</script>

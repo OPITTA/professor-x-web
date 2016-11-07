@@ -1,0 +1,22 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="/professor_x_web">增信助手</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                #if($!admin == "admin")
+                ##<li #if("manager" == $top_menu) class=active #end><a href="/professor_x_web/manager/user_center/list">管理中心</a></li>
+                #end
+                #if($!common == "common")
+                ##<li #if("report" == $top_menu) class=active #end><a href="/professor_x_web/report/organization_info/show">报表中心</a></li>
+                #end
+                </ul>
+            </div>
+          </div>
+    </div>
+</div>

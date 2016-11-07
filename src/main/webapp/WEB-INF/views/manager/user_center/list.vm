@@ -1,0 +1,46 @@
+#set($top_menu="manager")
+#set($side_bar="user_center")
+#set($tab_bar="list")
+#parse("shared/header.vm")
+#parse("shared/top_menu.vm")
+#parse("shared/manager_side_bar.vm")
+#parse("shared/manager_tab_bar.vm")
+<div class="row-fluid">
+<table class="table">
+  <thead>
+    <tr>
+       <th>用户角色</th>
+      <th>帐号</th>
+      <th>email</th>
+      <th>有效</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    #foreach($user in $users)
+    <tr>
+      <td>
+            #if($user.userRole == 1)
+                成员
+            #elseif($user.userRole == 4)
+                经理
+            #elseif($user.userRole == 5)
+                超级管理员
+            #end
+       </td>
+      <td>$user.account</td>
+      <td>$user.email</td>
+      <td>
+            #if($user.valied == 1)
+            <span class="label label-success">是</span>
+            #elseif($user.valied == 2)
+            <span class="badge badge-important">否</span>
+            #end
+      </td>
+      <td><a href="/professor_x_web/manager/user_center/delete?account=$user.account">删除</a></td>
+    </tr>
+    #end
+  </tbody>
+</table>
+</div>
+#parse("shared/footer.vm")

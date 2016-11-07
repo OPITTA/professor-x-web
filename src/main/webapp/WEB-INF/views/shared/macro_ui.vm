@@ -1,0 +1,8 @@
+#macro (input $!field $!type $!placeholder)
+    #if(!$!type)
+        $!type="text"
+    #end
+    #springBind($!field)
+    <input id="${status.expression}" name="${status.expression}" type="$!type" class="input-block-level" placeholder="$!placeholder" value="$!status.value">
+    <font color="red">$!{status.errorMessage}</font>
+#end

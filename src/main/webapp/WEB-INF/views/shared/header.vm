@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en">
+<![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en">
+<![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]>
+<!-->
+<html class="not-ie" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>增信助手</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="增信助手">
+        <meta name="author" content="xin.cao@100credit.com">
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <link rel="shortcut icon" href="/professor_x_web/img/favicon.png">
+        <link rel="stylesheet" type="text/css" href="/professor_x_web/css/bootstrap.v2.css">
+        <link rel="stylesheet" type="text/css" href="/professor_x_web/css/bootstrap-responsive.v2.css">
+        <link rel="stylesheet" type="text/css" href="/professor_x_web/css/jquery-ui-1.8.21.custom.css">
+        <link rel="stylesheet" type="text/css" href="/professor_x_web/css/jquery-ui-timepicker-addon.css">
+        <link rel="stylesheet" type="text/css" href="/professor_x_web/css/jquery-ui.css">
+        <script type="text/javascript" src="/professor_x_web/js/bootstrap.v2.min.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery.validate.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery.validate.messages.zh-cn.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery-ui-1.8.16.custom.min.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery-ui-sliderAccess.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery-ui-timepicker-addon.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery-ui-timepicker-zh-CN.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery.ui.datepicker-zh-CN.js"></script>
+    </head>
+    <body>

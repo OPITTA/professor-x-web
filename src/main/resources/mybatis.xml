@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>${database.driver}</value>
+        </property>
+        <property name="url">
+            <value>jdbc:mysql://${database.host}:${database.port}/${database.name}?${database.opts}</value>
+        </property>
+        <property name="username">
+            <value>${database.user}</value>
+        </property>
+        <property name="password">
+            <value>${database.pass}</value>
+        </property>
+    </bean>
+    <bean id="connectionFactory" class="org.apache.commons.dbcp.DataSourceConnectionFactory">
+        <constructor-arg>
+            <ref bean="driverManagerDataSource"/>
+        </constructor-arg>
+    </bean>
+    <bean id="connectionPool" class="org.apache.commons.pool.impl.GenericObjectPool">
+        <property name="minIdle">
+            <value>${database.connections.min_idle}</value>
+        </property>
+        <property name="maxIdle">
+            <value>${database.connections.max_idle}</value>
+        </property>
+        <property name="MaxActive">
+            <value>${database.connections.max_active}</value>
+        </property>
+        <property name="minEvictableIdleTimeMillis">
+            <value>300000</value>
+        </property>
+        <property name="timeBetweenEvictionRunsMillis">
+            <value>60000</value>
+        </property>
+    </bean>
+    <bean id="poolableConnectionFactory" class="com.br.professor_x_web.service.PoolableConnectionFactoryAE">
+        <constructor-arg index="0">
+            <ref bean="connectionFactory"/>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <ref bean="connectionPool"/>
+        </constructor-arg>
+        <constructor-arg index="2">
+            <null/>
+        </constructor-arg>
+        <constructor-arg index="3">
+            <value>${database.validation_timeout}</value>
+        </constructor-arg>
+        <constructor-arg index="4">
+            <value>false</value>
+        </constructor-arg>
+        <constructor-arg index="5">
+            <value>true</value>
+        </constructor-arg>
+    </bean>
+    <bean id="dataSource" class="org.apache.commons.dbcp.PoolingDataSource" depends-on="poolableConnectionFactory">
+        <constructor-arg>
+            <ref bean="connectionPool"/>
+        </constructor-arg>
+    </bean>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="configLocation">
+            <value>classpath:mybatis-config.xml</value>
+        </property>
+    </bean>
+    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
+        <property name="mapperInterface">
+            <value>com.br.professor_x_web.mapper.UserMapper</value>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,37 @@
+#set($top_menu="manager")
+#set($side_bar="user_center")
+#set($tab_bar="change")
+#parse("shared/header.vm")
+#parse("shared/top_menu.vm")
+#parse("shared/manager_side_bar.vm")
+#parse("shared/manager_tab_bar.vm")
+<div class="row-fluid">
+<form class="form-horizontal" action="/professor_x_web/manager/user_center/do_change_passwd" method="post">
+    <fieldset>
+    <legend>修改密码</legend>
+    <div class="control-group">
+        <label class="control-label" for="">帐号</label>
+        <div class="controls">
+            <select id="account" name="account">
+                <option value="">请选择</option>
+                #foreach($user in $users)
+                <option value="$user.account">$user.account</option>
+                #end
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">密码</label>
+        <div class="controls">
+            <input id="passwd" name="passwd" type="password" class="input-xlarge" placeholder="密码">
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+                <button id="submit" type="text" class="btn btn-large btn-primary">提交</button>
+        </div>
+    </div>
+</fieldset>
+</form>
+</div>
+#parse("shared/footer.vm")

@@ -1,0 +1,7 @@
+<div class="row-fluid">
+<ul class="nav nav-tabs">
+<li#if($tab_bar=="list") class="active" #end><a href="/professor_x_web/manager/user_center/list">用户列表</a></li>
+<li #if($tab_bar=="add") class="active" #end><a href="/professor_x_web/manager/user_center/register_form">添加用户</a></li>
+<li #if($tab_bar=="change") class="active" #end><a href="/professor_x_web/manager/user_center/change_passwd_form">修改密码</a></li>
+</ul>
+</div>

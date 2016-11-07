@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<html>
+    <head>
+        <title>登陆 -增信助手</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="登陆 -增信助手">
+        <meta name="author" content="xin.cao@100credit.com">
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <link rel="shortcut icon" href="/professor_x_web/img/favicon.png">
+        <link rel="stylesheet" type="text/css" href="/professor_x_web/css/bootstrap.v2.css">
+        <link rel="stylesheet" type="text/css" href="/professor_x_web/css/bootstrap-responsive.v2.css">
+        <link rel="stylesheet" type="text/css" href="/professor_x_web/css/jquery-ui-1.8.21.custom.css">
+        <link rel="stylesheet" type="text/css" href="/professor_x_web/css/jquery-ui-timepicker-addon.css">
+        <link rel="stylesheet" type="text/css" href="/professor_x_web/css/jquery-ui.css">
+        <script type="text/javascript" src="/professor_x_web/js/bootstrap.v2.min.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery.validate.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery.validate.messages.zh-cn.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery-ui-1.8.16.custom.min.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery-ui-sliderAccess.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery-ui-timepicker-addon.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery-ui-timepicker-zh-CN.js"></script>
+        <script type="text/javascript" src="/professor_x_web/js/jquery.ui.datepicker-zh-CN.js"></script>
+    </head>
+    <body>
+        <header style="background-color: #000;color:#fff; width:100%; text-align:center;padding: 20px; border-bottom: solid 1px #eee;position: fixed;bottom: top;left: 0;">
+            <h1>系统登陆</h1>
+        </header>
+        <div class="container-fluid">
+            <div class="modal login-form" style="top: 25%">
+                <div class="modal-header" style="text-align: center;">
+                    <h3>系统登陆</h3>
+                    <h6 style="margin-left: 10px;"></h6>
+                </div>
+                <form id="login-form" action="/professor_x_web/do_login" method="POST" class="login-form" style="padding: 10px; margin-bottom: 0px;">
+                    <div class="modal-body">
+                        <div class="row-fluid">
+                            <div class="span3">
+                            </div>
+                            <div class="span9">
+                                <div class="control-group">
+                                    <div class="input-prepend">
+                                        <span class="add-on">
+                                            <i class="icon-user icon-blue"></i> 用户名
+                                        </span>
+                                        #springBind("User.account")
+                                        <input id="${status.expression}" name="${status.expression}" value="$!status.value" type="text" placeholder="请输入用户名..." tabindex="10">
+                                        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="input-prepend">
+                                        <span class="add-on">
+                                            <i class="icon-tag icon-blue"></i> 密&nbsp;&nbsp;&nbsp;码
+                                        </span>
+                                        #springBind("User.passwd")
+                                        <input id="${status.expression}" name="${status.expression}" value="" type="password" placeholder="请输入密码..." tabindex="20" value="$!status.value">
+                                        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="btn_submit" type="submit"><i class="icon-ok icon-white" tabindex="30"></i> 登录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer style="width:100%; text-align:center;border-top: solid 1px #eee;padding-top: 10px;margin-top: 20px;position: fixed;bottom: 0;left: 0;">
+            <p>&copy; 百融 2015 - 2016，保留所有权利</p>
+        </footer>
+    </body>
+    <script type="text/javascript">
+$(document).ready(function () {
+    $("#login_form").validate({
+        rules: {
+            account: {
+                required: true,
+                rangelength: [6, 25]
+            },
+            passwd: {
+                required: true
+            }
+        }
+    });
+});
+    </script>
+</html>

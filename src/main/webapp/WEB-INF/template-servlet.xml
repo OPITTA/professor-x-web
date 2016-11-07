@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+    <mvc:annotation-driven/>
+    <mvc:resources mapping="/css/**" location="/WEB-INF/resources/css/"/>
+    <mvc:resources mapping="/img/**" location="/WEB-INF/resources/img/"/>
+    <mvc:resources mapping="/js/**" location="/WEB-INF/resources/js/"/>
+    <context:component-scan base-package="com.br.professor_x_web.controller"/>
+    <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/views/"/>
+        <property name="configLocation" value="/WEB-INF/views/velocity.properties" />
+    </bean>
+    <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="cache" value="false"/>
+        <property name="suffix" value=".vm"/>
+        <property name="contentType" value="text/html;charset=UTF-8" />
+        <property name="exposeSpringMacroHelpers" value="true"/>
+    </bean>
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/report/**" />
+            <bean class="com.br.professor_x_web.controller.core.CommonRoleInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/manager/**" />
+            <bean class="com.br.professor_x_web.controller.core.AdminRoleInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>

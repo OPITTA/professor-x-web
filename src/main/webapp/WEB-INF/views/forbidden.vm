@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Forbidden</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>您没有权限访问$!forward页面！</h1>
+    </body>
+<script type="text/javascript">
+    function delayedRedirect(n, url) {
+        var start = new Date().getTime();
+        while (true) if (new Date().getTime() - start > n) break;
+        window.location.href = url;
+    }
+    delayedRedirect(1000 * 10, "/professor_x_web/");
+</script>
+</html>

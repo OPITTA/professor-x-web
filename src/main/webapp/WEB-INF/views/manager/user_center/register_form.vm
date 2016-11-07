@@ -1,0 +1,118 @@
+#set($top_menu="manager")
+#set($side_bar="user_center")
+#set($tab_bar="add")
+#parse("shared/header.vm")
+#parse("shared/top_menu.vm")
+#parse("shared/manager_side_bar.vm")
+#parse("shared/manager_tab_bar.vm")
+<div class="row-fluid">
+<form id="register_form" class="form-horizontal" action="/professor_x_web/manager/user_center/do_register" method="post">
+    <fieldset>
+    <legend>添加用户</legend>
+    <div class="control-group">
+    <label class="control-label" for="">帐号</label>
+        <div class="controls">
+            #springBind("User.account")
+            <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="帐号" value="$!status.value">
+            #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+            <div id="check_account"></div>
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">邮箱</label>
+        <div class="controls">
+            #springBind("User.email")
+            <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="邮箱" value="$!status.value">
+            #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+            <div id="check_email"></div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">密码</label>
+        <div class="controls">
+            #springBind("User.passwd")
+            <input id="${status.expression}" name="${status.expression}" type="password" class="input-xlarge" placeholder="密码" value="$!status.value">
+            #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">确认密码</label>
+        <div class="controls">
+            #springBind("User.againPasswd")
+            <input id="${status.expression}" name="${status.expression}" type="password" class="input-xlarge" placeholder="确认密码" value="$!status.value">
+            #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+                <button id="submit" type="text" class="btn btn-large btn-primary">提交</button>
+        </div>
+    </div>
+</fieldset>
+</form>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#register_form").validate({
+            rules: {
+                account: {
+                    required: true,
+                    rangelength:[6,25]
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                passwd: {
+                    required: true
+                },
+                againPasswd: {
+                    required: true,
+                    equalTo: "#passwd"
+                }
+            }
+        });
+        $("#account").change(
+            function() {
+                var account = $("#account").val();
+                var len = account.length;
+                if (len >= 6 && len <= 25) {
+                    $.ajax({
+                        url: "/professor_x_web/user/ajax/check_account/" + account,
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.is_ok === "1") {
+                                $("#check_account").addClass("alert alert-success");
+                                $("#check_account").html("帐号通过检测！");
+                            }
+                        },
+                        error: function (arg) {
+                            var e = arg;
+                        }
+                    });
+                }
+            }
+        );
+        $("#email").change(
+            function() {
+                var email = $("#email").val();
+                if (isEmail(email)) {
+                    $.ajax({
+                        url: "/professor_x_web/user/ajax/check_email/" + email,
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.is_ok === "1") {
+                                $("#check_email").addClass("alert alert-success");
+                                $("#check_email").html("邮箱通过检测！");
+                            }
+                        },
+                        error: function (arg) {
+                            var e = arg;
+                        }
+                    });
+                }
+            }
+        );
+    });
+</script>
+#parse("shared/footer.vm")
