@@ -22,10 +22,8 @@
       <td>
             #if($user.userRole == 1)
                 成员
-            #elseif($user.userRole == 4)
-                经理
-            #elseif($user.userRole == 5)
-                超级管理员
+            #elseif($user.userRole == 3)
+                管理员
             #end
        </td>
       <td>$user.account</td>

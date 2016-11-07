@@ -10,9 +10,9 @@
 <script type="text/javascript">
     function delayedRedirect(n, url) {
         var start = new Date().getTime();
-        while (true) if (new Date().getTime() - start > n) githubeak;
+        while (true) if (new Date().getTime() - start > n) break;
         window.location.href = url;
     }
-    delayedRedirect(1000 * 10, "/professor_x_web/");
+    delayedRedirect(100, "/professor_x_web/");
 </script>
 </html>
