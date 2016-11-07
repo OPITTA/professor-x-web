@@ -75,7 +75,7 @@
 							$buttons.eq(1).addClass('ui-corner-right');
 						}
 
-						// adjust the width so we don't break the original layout
+						// adjust the width so we don't githubeak the original layout
 						var bOuterWidth = $buttons.css({
 									marginLeft: ((o.where == 'after' && !o.isRTL) || (o.where == 'before' && o.isRTL)? 10:0), 
 									marginRight: ((o.where == 'before' && !o.isRTL) || (o.where == 'after' && o.isRTL)? 10:0)

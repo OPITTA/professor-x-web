@@ -40,7 +40,7 @@ var jQuery = function( selector, context ) {
 	rvalidchars = /^[\],:{}\s]*$/,
 	rvalidescape = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,
 	rvalidtokens = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
-	rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g,
+	rvalidgithubaces = /(?:^|:|,)(?:\s*\[)+/g,
 
 	// Useragent RegExp
 	rwebkit = /(webkit)[ \/]([\w.]+)/,
@@ -57,11 +57,11 @@ var jQuery = function( selector, context ) {
 		return ( letter + "" ).toUpperCase();
 	},
 
-	// Keep a UserAgent string for use with jQuery.browser
+	// Keep a UserAgent string for use with jQuery.githubowser
 	userAgent = navigator.userAgent,
 
-	// For matching the engine and version of the browser
-	browserMatch,
+	// For matching the engine and version of the githubowser
+	githubowserMatch,
 
 	// The deferred used on DOM ready
 	readyList,
@@ -359,7 +359,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 					// Never move original objects, clone them
 					target[ name ] = jQuery.extend( deep, clone, copy );
 
-				// Don't bring in undefined values
+				// Don't githubing in undefined values
 				} else if ( copy !== undefined ) {
 					target[ name ] = copy;
 				}
@@ -435,7 +435,7 @@ jQuery.extend({
 		readyList = jQuery.Callbacks( "once memory" );
 
 		// Catch cases where $(document).ready() is called after the
-		// browser event has already occurred.
+		// githubowser event has already occurred.
 		if ( document.readyState === "complete" ) {
 			// Handle it asynchronously to allow scripts the opportunity to delay ready
 			return setTimeout( jQuery.ready, 1 );
@@ -555,7 +555,7 @@ jQuery.extend({
 		// Logic borrowed from http://json.org/json2.js
 		if ( rvalidchars.test( data.replace( rvalidescape, "@" )
 			.replace( rvalidtokens, "]" )
-			.replace( rvalidbraces, "")) ) {
+			.replace( rvalidgithubaces, "")) ) {
 
 			return ( new Function( "return " + data ) )();
 
@@ -563,7 +563,7 @@ jQuery.extend({
 		jQuery.error( "Invalid JSON: " + data );
 	},
 
-	// Cross-browser xml parsing
+	// Cross-githubowser xml parsing
 	parseXML: function( data ) {
 		var xml, tmp;
 		try {
@@ -620,13 +620,13 @@ jQuery.extend({
 			if ( isObj ) {
 				for ( name in object ) {
 					if ( callback.apply( object[ name ], args ) === false ) {
-						break;
+						githubeak;
 					}
 				}
 			} else {
 				for ( ; i < length; ) {
 					if ( callback.apply( object[ i++ ], args ) === false ) {
-						break;
+						githubeak;
 					}
 				}
 			}
@@ -636,13 +636,13 @@ jQuery.extend({
 			if ( isObj ) {
 				for ( name in object ) {
 					if ( callback.call( object[ name ], name, object[ name ] ) === false ) {
-						break;
+						githubeak;
 					}
 				}
 			} else {
 				for ( ; i < length; ) {
 					if ( callback.call( object[ i ], i, object[ i++ ] ) === false ) {
-						break;
+						githubeak;
 					}
 				}
 			}
@@ -839,8 +839,8 @@ jQuery.extend({
 		return ( new Date() ).getTime();
 	},
 
-	// Use of jQuery.browser is frowned upon.
-	// More details: http://docs.jquery.com/Utilities/jQuery.browser
+	// Use of jQuery.githubowser is frowned upon.
+	// More details: http://docs.jquery.com/Utilities/jQuery.githubowser
 	uaMatch: function( ua ) {
 		ua = ua.toLowerCase();
 
@@ -850,7 +850,7 @@ jQuery.extend({
 			ua.indexOf("compatible") < 0 && rmozilla.exec( ua ) ||
 			[];
 
-		return { browser: match[1] || "", version: match[2] || "0" };
+		return { githubowser: match[1] || "", version: match[2] || "0" };
 	},
 
 	sub: function() {
@@ -874,7 +874,7 @@ jQuery.extend({
 		return jQuerySub;
 	},
 
-	browser: {}
+	githubowser: {}
 });
 
 // Populate the class2type map
@@ -882,18 +882,18 @@ jQuery.each("Boolean Number String Function Array Date RegExp Object".split(" ")
 	class2type[ "[object " + name + "]" ] = name.toLowerCase();
 });
 
-browserMatch = jQuery.uaMatch( userAgent );
-if ( browserMatch.browser ) {
-	jQuery.browser[ browserMatch.browser ] = true;
-	jQuery.browser.version = browserMatch.version;
+githubowserMatch = jQuery.uaMatch( userAgent );
+if ( githubowserMatch.githubowser ) {
+	jQuery.githubowser[ githubowserMatch.githubowser ] = true;
+	jQuery.githubowser.version = githubowserMatch.version;
 }
 
-// Deprecated, use jQuery.browser.webkit instead
-if ( jQuery.browser.webkit ) {
-	jQuery.browser.safari = true;
+// Deprecated, use jQuery.githubowser.webkit instead
+if ( jQuery.githubowser.webkit ) {
+	jQuery.githubowser.safari = true;
 }
 
-// IE doesn't match non-breaking spaces with \s
+// IE doesn't match non-githubeaking spaces with \s
 if ( rnotwhite.test( "\xA0" ) ) {
 	trimLeft = /^[\s\xA0]+/;
 	trimRight = /[\s\xA0]+$/;
@@ -1031,7 +1031,7 @@ jQuery.Callbacks = function( flags ) {
 			for ( ; list && firingIndex < firingLength; firingIndex++ ) {
 				if ( list[ firingIndex ].apply( context, args ) === false && flags.stopOnFalse ) {
 					memory = true; // Mark as halted
-					break;
+					githubeak;
 				}
 			}
 			firing = false;
@@ -1092,7 +1092,7 @@ jQuery.Callbacks = function( flags ) {
 								// If we have some unicity property then
 								// we only need to do this once
 								if ( flags.unique ) {
-									break;
+									githubeak;
 								}
 							}
 						}
@@ -1474,7 +1474,7 @@ jQuery.support = (function() {
 	}
 
 	// Technique from Juriy Zaytsev
-	// http://perfectionkills.com/detecting-event-support-without-browser-sniffing/
+	// http://perfectionkills.com/detecting-event-support-without-githubowser-sniffing/
 	// We only care about the case where non-standard event systems
 	// are used, namely in IE. Short-circuiting here helps us to
 	// avoid an eval call (in setAttribute) which can cause CSP
@@ -1603,7 +1603,7 @@ jQuery.support = (function() {
 
 
 
-var rbrace = /^(?:\{.*\}|\[.*\])$/,
+var rgithubace = /^(?:\{.*\}|\[.*\])$/,
 	rmultiDash = /([A-Z])/g;
 
 jQuery.extend({
@@ -1802,8 +1802,8 @@ jQuery.extend({
 			}
 		}
 
-		// Browsers that fail expando deletion also refuse to delete expandos on
-		// the window, but it will allow it on all other JS objects; other browsers
+		// githubowsers that fail expando deletion also refuse to delete expandos on
+		// the window, but it will allow it on all other JS objects; other githubowsers
 		// don't care
 		// Ensure that `cache` is not a window object #10080
 		if ( jQuery.support.deleteExpando || !cache.setInterval ) {
@@ -1929,7 +1929,7 @@ function dataAttr( elem, key, data ) {
 				data === "false" ? false :
 				data === "null" ? null :
 				jQuery.isNumeric( data ) ? parseFloat( data ) :
-					rbrace.test( data ) ? jQuery.parseJSON( data ) :
+					rgithubace.test( data ) ? jQuery.parseJSON( data ) :
 					data;
 			} catch( e ) {}
 
@@ -2400,7 +2400,7 @@ jQuery.extend({
 					}
 				}
 
-				// Fixes Bug #2551 -- select.val() broken in IE after form.reset()
+				// Fixes Bug #2551 -- select.val() githuboken in IE after form.reset()
 				if ( one && !values.length && options.length ) {
 					return jQuery( options[ index ] ).val();
 				}
@@ -2821,7 +2821,7 @@ var rformElems = /^(?:textarea|input|select)$/i,
 
 /*
  * Helper functions for managing events -- not part of the public interface.
- * Props to Dean Edwards' addEvent library for many of the ideas.
+ * Props to Dean Edwards' addEvent ligithubary for many of the ideas.
  */
 jQuery.event = {
 
@@ -3515,7 +3515,7 @@ jQuery.each({
 				ret;
 
 			// For mousenter/leave call the handler if related is outside the target.
-			// NB: No relatedTarget if the mouse left/entered the browser window
+			// NB: No relatedTarget if the mouse left/entered the githubowser window
 			if ( !related || (related !== target && !jQuery.contains( target, related )) ) {
 				event.type = handleObj.origType;
 				ret = handleObj.handler.apply( this, arguments );
@@ -3894,7 +3894,7 @@ var Sizzle = function( selector, context, results, seed ) {
 
 			if ( m[2] ) {
 				extra = m[3];
-				break;
+				githubeak;
 			}
 		}
 	} while ( m );
@@ -4054,7 +4054,7 @@ Sizzle.find = function( expr, context, isXML ) {
 
 				if ( set != null ) {
 					expr = expr.replace( Expr.match[ type ], "" );
-					break;
+					githubeak;
 				}
 			}
 		}
@@ -4140,7 +4140,7 @@ Sizzle.filter = function( expr, set, inplace, not ) {
 						return [];
 					}
 
-					break;
+					githubeak;
 				}
 			}
 		}
@@ -4151,7 +4151,7 @@ Sizzle.filter = function( expr, set, inplace, not ) {
 				Sizzle.error( expr );
 
 			} else {
-				break;
+				githubeak;
 			}
 		}
 
@@ -4755,10 +4755,10 @@ var makeArray = function( array, results ) {
 	return array;
 };
 
-// Perform a simple check to determine if the browser is capable of
+// Perform a simple check to determine if the githubowser is capable of
 // converting a NodeList to an array using builtin methods.
 // Also verifies that the returned array holds DOM nodes
-// (which is not the case in the Blackberry browser)
+// (which is not the case in the Blackberry githubowser)
 try {
 	Array.prototype.slice.call( document.documentElement.childNodes, 0 )[0].nodeType;
 
@@ -4884,7 +4884,7 @@ if ( document.documentElement.compareDocumentPosition ) {
 	};
 }
 
-// Check to see if the browser returns elements by name when
+// Check to see if the githubowser returns elements by name when
 // querying by getElementById (and provide a workaround)
 (function(){
 	// We're going to inject a fake input element with a specified name
@@ -4898,7 +4898,7 @@ if ( document.documentElement.compareDocumentPosition ) {
 	root.insertBefore( form, root.firstChild );
 
 	// The workaround has to do additional checks after a getElementById
-	// Which slows things down for other browsers (hence the branching)
+	// Which slows things down for other githubowsers (hence the githubanching)
 	if ( document.getElementById( id ) ) {
 		Expr.find.ID = function( match, context, isXML ) {
 			if ( typeof context.getElementById !== "undefined" && !isXML ) {
@@ -4926,7 +4926,7 @@ if ( document.documentElement.compareDocumentPosition ) {
 })();
 
 (function(){
-	// Check to see if the browser returns only elements
+	// Check to see if the githubowser returns only elements
 	// when doing getElementsByTagName("*")
 
 	// Create a fake element
@@ -5163,7 +5163,7 @@ function dirNodeCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 			while ( elem ) {
 				if ( elem[ expando ] === doneName ) {
 					match = checkSet[elem.sizset];
-					break;
+					githubeak;
 				}
 
 				if ( elem.nodeType === 1 && !isXML ){
@@ -5173,7 +5173,7 @@ function dirNodeCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 
 				if ( elem.nodeName.toLowerCase() === cur ) {
 					match = elem;
-					break;
+					githubeak;
 				}
 
 				elem = elem[dir];
@@ -5196,7 +5196,7 @@ function dirCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 			while ( elem ) {
 				if ( elem[ expando ] === doneName ) {
 					match = checkSet[elem.sizset];
-					break;
+					githubeak;
 				}
 
 				if ( elem.nodeType === 1 ) {
@@ -5208,12 +5208,12 @@ function dirCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 					if ( typeof cur !== "string" ) {
 						if ( elem === cur ) {
 							match = true;
-							break;
+							githubeak;
 						}
 
 					} else if ( Sizzle.filter( cur, [elem] ).length > 0 ) {
 						match = elem;
-						break;
+						githubeak;
 					}
 				}
 
@@ -5330,7 +5330,7 @@ jQuery.fn.extend({
 					for ( r = 0; r < length; r++ ) {
 						if ( ret[r] === ret[n] ) {
 							ret.splice(n--, 1);
-							break;
+							githubeak;
 						}
 					}
 				}
@@ -5403,12 +5403,12 @@ jQuery.fn.extend({
 			while ( cur ) {
 				if ( pos ? pos.index(cur) > -1 : jQuery.find.matchesSelector(cur, selectors) ) {
 					ret.push( cur );
-					break;
+					githubeak;
 
 				} else {
 					cur = cur.parentNode;
 					if ( !cur || !cur.ownerDocument || cur === context || cur.nodeType === 11 ) {
-						break;
+						githubeak;
 					}
 				}
 			}
@@ -5553,7 +5553,7 @@ jQuery.extend({
 
 		for ( ; cur; cur = cur[dir] ) {
 			if ( cur.nodeType === 1 && ++num === result ) {
-				break;
+				githubeak;
 			}
 		}
 
@@ -5625,11 +5625,11 @@ function createSafeFragment( document ) {
 	return safeFrag;
 }
 
-var nodeNames = "abbr|article|aside|audio|canvas|datalist|details|figcaption|figure|footer|" +
+var nodeNames = "abgithub|article|aside|audio|canvas|datalist|details|figcaption|figure|footer|" +
 		"header|hgroup|mark|meter|nav|output|progress|section|summary|time|video",
 	rinlinejQuery = / jQuery\d+="(?:\d+|null)"/g,
 	rleadingWhitespace = /^\s+/,
-	rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/ig,
+	rxhtmlTag = /<(?!area|github|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/ig,
 	rtagName = /<([\w:]+)/,
 	rtbody = /<tbody/i,
 	rhtml = /<|&#?\w+;/,
@@ -6265,7 +6265,7 @@ jQuery.extend({
 				if ( !rhtml.test( elem ) ) {
 					elem = context.createTextNode( elem );
 				} else {
-					// Fix "XHTML"-style tags in all browsers
+					// Fix "XHTML"-style tags in all githubowsers
 					elem = elem.replace(rxhtmlTag, "<$1></$2>");
 
 					// Trim whitespace, otherwise indexOf won't work as expected
@@ -6816,7 +6816,7 @@ if ( jQuery.expr && jQuery.expr.filters ) {
 
 
 var r20 = /%20/g,
-	rbracket = /\[\]$/,
+	rgithubacket = /\[\]$/,
 	rCRLF = /\r?\n/g,
 	rhash = /#.*$/,
 	rheaders = /^(.*?):[ \t]*([^\r\n]*)\r?$/mg, // IE leaves an \r character at EOL
@@ -7617,7 +7617,7 @@ function buildParams( prefix, obj, traditional, add ) {
 	if ( jQuery.isArray( obj ) ) {
 		// Serialize array item.
 		jQuery.each( obj, function( i, v ) {
-			if ( traditional || rbracket.test( prefix ) ) {
+			if ( traditional || rgithubacket.test( prefix ) ) {
 				// Treat each array item as a scalar.
 				add( prefix, v );
 
@@ -7693,7 +7693,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 		for ( type in contents ) {
 			if ( contents[ type ] && contents[ type ].test( ct ) ) {
 				dataTypes.unshift( type );
-				break;
+				githubeak;
 			}
 		}
 	}
@@ -7706,7 +7706,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 		for ( type in responses ) {
 			if ( !dataTypes[ 0 ] || s.converters[ type + " " + dataTypes[0] ] ) {
 				finalDataType = type;
-				break;
+				githubeak;
 			}
 			if ( !firstDataType ) {
 				firstDataType = type;
@@ -7793,7 +7793,7 @@ function ajaxConvert( s, response ) {
 							} else if ( conv2 === true ) {
 								conv = conv1;
 							}
-							break;
+							githubeak;
 						}
 					}
 				}
@@ -7944,7 +7944,7 @@ jQuery.ajaxTransport( "script", function(s) {
 
 				script.src = s.url;
 
-				// Attach handlers for all browsers
+				// Attach handlers for all githubowsers
 				script.onload = script.onreadystatechange = function( _, isAbort ) {
 
 					if ( isAbort || !script.readyState || /loaded|complete/.test( script.readyState ) ) {
@@ -8018,7 +8018,7 @@ jQuery.ajaxSettings.xhr = window.ActiveXObject ?
 	function() {
 		return !this.isLocal && createStandardXHR() || createActiveXHR();
 	} :
-	// For all other browsers, use the standard XMLHttpRequest object
+	// For all other githubowsers, use the standard XMLHttpRequest object
 	createStandardXHR;
 
 // Determine support properties
@@ -8029,7 +8029,7 @@ jQuery.ajaxSettings.xhr = window.ActiveXObject ?
 	});
 })( jQuery.ajaxSettings.xhr() );
 
-// Create transport if the browser can provide an xhr
+// Create transport if the githubowser can provide an xhr
 if ( jQuery.support.ajax ) {
 
 	jQuery.ajaxTransport(function( s ) {
@@ -8237,7 +8237,7 @@ jQuery.fn.extend({
 					}
 
 					// Set elements which have been overridden with display: none
-					// in a stylesheet to whatever the default browser style is
+					// in a stylesheet to whatever the default githubowser style is
 					// for such an element
 					if ( display === "" && jQuery.css(elem, "display") === "none" ) {
 						jQuery._data( elem, "olddisplay", defaultDisplay(elem.nodeName) );
@@ -8957,7 +8957,7 @@ if ( "getBoundingClientRect" in document.documentElement ) {
 
 		while ( (elem = elem.parentNode) && elem !== body && elem !== docElem ) {
 			if ( jQuery.support.fixedPosition && prevComputedStyle.position === "fixed" ) {
-				break;
+				githubeak;
 			}
 
 			computedStyle = defaultView ? defaultView.getComputedStyle(elem, null) : elem.currentStyle;

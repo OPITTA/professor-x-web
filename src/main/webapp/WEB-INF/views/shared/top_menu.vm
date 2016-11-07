@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="/professor_x_web">增信助手</a>
+            <a class="githuband" href="/professor_x_web">增信助手</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
                 #if($!admin == "admin")

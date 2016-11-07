@@ -39,7 +39,7 @@
             <value>60000</value>
         </property>
     </bean>
-    <bean id="poolableConnectionFactory" class="com.br.professor_x_web.service.PoolableConnectionFactoryAE">
+    <bean id="poolableConnectionFactory" class="com.github.professor_x_web.service.PoolableConnectionFactoryAE">
         <constructor-arg index="0">
             <ref bean="connectionFactory"/>
         </constructor-arg>
@@ -74,7 +74,7 @@
     </bean>
     <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
         <property name="mapperInterface">
-            <value>com.br.professor_x_web.mapper.UserMapper</value>
+            <value>com.github.professor_x_web.mapper.UserMapper</value>
         </property>
     </bean>
 </beans>

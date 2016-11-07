@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.br</groupId>
+    <groupId>com.github</groupId>
     <artifactId>professor_x_web</artifactId>
     <version>1.0.2</version>
     <packaging>war</packaging>
@@ -133,7 +133,7 @@
                 <directory>src/main/resources</directory>
             </resource>
             <resource>
-                <directory>src/main/java/com/br/professor_x_web/mapper/mybatis</directory>
+                <directory>src/main/java/com/github/professor_x_web/mapper/mybatis</directory>
                 <includes>
                     <include>**/*.xml</include>
                 </includes>

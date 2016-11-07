@@ -130,7 +130,7 @@
                                 if (argument.messages) {
                                     settings.messages[element.name] = $.extend(settings.messages[element.name], argument.messages);
                                 }
-                                break;
+                                githubeak;
                             case "remove":
                                 if (!argument) {
                                     delete staticRules[element.name];
@@ -794,15 +794,15 @@
                     for (var method in $.validator.methods) {
                         var value;
 
-                        // support for <input required> in both html5 and older browsers
+                        // support for <input required> in both html5 and older githubowsers
                         if (method === 'required') {
                             value = $element.get(0).getAttribute(method);
-                            // Some browsers return an empty string for the required attribute
-                            // and non-HTML5 browsers might have required="" markup
+                            // Some githubowsers return an empty string for the required attribute
+                            // and non-HTML5 githubowsers might have required="" markup
                             if (value === "") {
                                 value = true;
                             }
-                            // force non-HTML5 browsers to return bool
+                            // force non-HTML5 githubowsers to return bool
                             value = !!value;
                         } else {
                             value = $element.attr(method);
@@ -854,10 +854,10 @@
                             switch (typeof val.depends) {
                                 case "string":
                                     keepRule = !!$(val.depends, element.form).length;
-                                    break;
+                                    githubeak;
                                 case "function":
                                     keepRule = val.depends.call(element, element);
-                                    break;
+                                    githubeak;
                             }
                             if (keepRule) {
                                 rules[prop] = val.param !== undefined ? val.param : true;

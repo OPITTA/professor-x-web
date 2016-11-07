@@ -932,16 +932,16 @@
         switch (placement) {
           case 'bottom':
             tp = {top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2}
-            break
+            githubeak
           case 'top':
             tp = {top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2}
-            break
+            githubeak
           case 'left':
             tp = {top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth}
-            break
+            githubeak
           case 'right':
             tp = {top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width}
-            break
+            githubeak
         }
 
         this.applyPlacement(tp, placement)
@@ -2160,17 +2160,17 @@
         case 13: // enter
         case 27: // escape
           e.preventDefault()
-          break
+          githubeak
 
         case 38: // up arrow
           e.preventDefault()
           this.prev()
-          break
+          githubeak
 
         case 40: // down arrow
           e.preventDefault()
           this.next()
-          break
+          githubeak
       }
 
       e.stopPropagation()
@@ -2193,18 +2193,18 @@
         case 16: // shift
         case 17: // ctrl
         case 18: // alt
-          break
+          githubeak
 
         case 9: // tab
         case 13: // enter
           if (!this.shown) return
           this.select()
-          break
+          githubeak
 
         case 27: // escape
           if (!this.shown) return
           this.hide()
-          break
+          githubeak
 
         default:
           this.lookup()

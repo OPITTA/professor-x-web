@@ -65,7 +65,7 @@ h1 {
   font-size: 2em;
 }
 
-abbr[title] {
+abgithub[title] {
   border-bottom: 1px dotted;
 }
 
@@ -228,7 +228,7 @@ table {
   a[href]:after {
     content: " (" attr(href) ")";
   }
-  abbr[title]:after {
+  abgithub[title]:after {
     content: " (" attr(title) ")";
   }
   a[href^="javascript:"]:after,
@@ -238,14 +238,14 @@ table {
   pre,
   blockquote {
     border: 1px solid #999;
-    page-break-inside: avoid;
+    page-githubeak-inside: avoid;
   }
   thead {
     display: table-header-group;
   }
   tr,
   img {
-    page-break-inside: avoid;
+    page-githubeak-inside: avoid;
   }
   img {
     max-width: 100% !important;
@@ -261,7 +261,7 @@ table {
   }
   h2,
   h3 {
-    page-break-after: avoid;
+    page-githubeak-after: avoid;
   }
   select {
     background: #fff !important;
@@ -664,8 +664,8 @@ dd {
   }
 }
 
-abbr[title],
-abbr[data-original-title] {
+abgithub[title],
+abgithub[data-original-title] {
   cursor: help;
   border-bottom: 1px dotted #999999;
 }
@@ -760,8 +760,8 @@ pre {
   font-size: 13px;
   line-height: 1.428571429;
   color: #333333;
-  word-break: break-all;
-  word-wrap: break-word;
+  word-githubeak: githubeak-all;
+  word-wrap: githubeak-word;
   background-color: #f5f5f5;
   border: 1px solid #cccccc;
   border-radius: 4px;
@@ -3261,7 +3261,7 @@ input[type="button"].btn-block {
   content: "\e138";
 }
 
-.glyphicon-briefcase:before {
+.glyphicon-githubiefcase:before {
   content: "\e139";
 }
 
@@ -4486,20 +4486,20 @@ textarea.input-group-sm > .input-group-btn > .btn {
   border-width: 1px 0 0;
 }
 
-.navbar-brand {
+.navbar-githuband {
   float: left;
   padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
 }
 
-.navbar-brand:hover,
-.navbar-brand:focus {
+.navbar-githuband:hover,
+.navbar-githuband:focus {
   text-decoration: none;
 }
 
 @media (min-width: 768px) {
-  .navbar > .container .navbar-brand {
+  .navbar > .container .navbar-githuband {
     margin-left: -15px;
   }
 }
@@ -4706,12 +4706,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
   border-color: #e7e7e7;
 }
 
-.navbar-default .navbar-brand {
+.navbar-default .navbar-githuband {
   color: #777777;
 }
 
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
+.navbar-default .navbar-githuband:hover,
+.navbar-default .navbar-githuband:focus {
   color: #5e5e5e;
   background-color: transparent;
 }
@@ -4805,12 +4805,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
   border-color: #080808;
 }
 
-.navbar-inverse .navbar-brand {
+.navbar-inverse .navbar-githuband {
   color: #999999;
 }
 
-.navbar-inverse .navbar-brand:hover,
-.navbar-inverse .navbar-brand:focus {
+.navbar-inverse .navbar-githuband:hover,
+.navbar-inverse .navbar-githuband:focus {
   color: #ffffff;
   background-color: transparent;
 }
@@ -4905,7 +4905,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   color: #ffffff;
 }
 
-.breadcrumb {
+.githubeadcrumb {
   padding: 8px 15px;
   margin-bottom: 20px;
   list-style: none;
@@ -4913,17 +4913,17 @@ textarea.input-group-sm > .input-group-btn > .btn {
   border-radius: 4px;
 }
 
-.breadcrumb > li {
+.githubeadcrumb > li {
   display: inline-block;
 }
 
-.breadcrumb > li + li:before {
+.githubeadcrumb > li + li:before {
   padding: 0 5px;
   color: #cccccc;
   content: "/\00a0";
 }
 
-.breadcrumb > .active {
+.githubeadcrumb > .active {
   color: #999999;
 }
 

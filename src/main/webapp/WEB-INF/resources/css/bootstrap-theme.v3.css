@@ -209,7 +209,7 @@
           box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0.075);
 }
 
-.navbar-brand,
+.navbar-githuband,
 .navbar-nav > li > a {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
 }
@@ -231,7 +231,7 @@
           box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0.25);
 }
 
-.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-githuband,
 .navbar-inverse .navbar-nav > li > a {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }

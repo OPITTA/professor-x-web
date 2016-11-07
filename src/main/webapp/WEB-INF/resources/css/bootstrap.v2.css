@@ -166,7 +166,7 @@ textarea {
   a[href]:after {
     content: " (" attr(href) ")";
   }
-  abbr[title]:after {
+  abgithub[title]:after {
     content: " (" attr(title) ")";
   }
   .ir a:after,
@@ -177,14 +177,14 @@ textarea {
   pre,
   blockquote {
     border: 1px solid #999;
-    page-break-inside: avoid;
+    page-githubeak-inside: avoid;
   }
   thead {
     display: table-header-group;
   }
   tr,
   img {
-    page-break-inside: avoid;
+    page-githubeak-inside: avoid;
   }
   img {
     max-width: 100% !important;
@@ -200,7 +200,7 @@ textarea {
   }
   h2,
   h3 {
-    page-break-after: avoid;
+    page-githubeak-after: avoid;
   }
 }
 body {
@@ -750,12 +750,12 @@ hr {
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #ffffff;
 }
-abbr[title],
-abbr[data-original-title] {
+abgithub[title],
+abgithub[data-original-title] {
   cursor: help;
   border-bottom: 1px dotted #999999;
 }
-abbr.initialism {
+abgithub.initialism {
   font-size: 90%;
   text-transform: uppercase;
 }
@@ -830,8 +830,8 @@ pre {
   margin: 0 0 10px;
   font-size: 13px;
   line-height: 20px;
-  word-break: break-all;
-  word-wrap: break-word;
+  word-githubeak: githubeak-all;
+  word-wrap: githubeak-word;
   white-space: pre;
   white-space: pre-wrap;
   background-color: #f5f5f5;
@@ -2871,7 +2871,7 @@ input[type="submit"].btn.btn-mini {
 .icon-filter {
   background-position: -408px -144px;
 }
-.icon-briefcase {
+.icon-githubiefcase {
   background-position: -432px -144px;
 }
 .icon-fullscreen {
@@ -3482,7 +3482,7 @@ input[type="submit"].btn.btn-mini {
   height: auto;
   overflow: visible;
 }
-.navbar .brand {
+.navbar .githuband {
   float: left;
   display: block;
   padding: 10px 20px 10px;
@@ -3492,8 +3492,8 @@ input[type="submit"].btn.btn-mini {
   color: #777777;
   text-shadow: 0 1px 0 #ffffff;
 }
-.navbar .brand:hover,
-.navbar .brand:focus {
+.navbar .githuband:hover,
+.navbar .githuband:focus {
   text-decoration: none;
 }
 .navbar-text {
@@ -3821,18 +3821,18 @@ input[type="submit"].btn.btn-mini {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
   border-color: #252525;
 }
-.navbar-inverse .brand,
+.navbar-inverse .githuband,
 .navbar-inverse .nav > li > a {
   color: #999999;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-.navbar-inverse .brand:hover,
+.navbar-inverse .githuband:hover,
 .navbar-inverse .nav > li > a:hover,
-.navbar-inverse .brand:focus,
+.navbar-inverse .githuband:focus,
 .navbar-inverse .nav > li > a:focus {
   color: #ffffff;
 }
-.navbar-inverse .brand {
+.navbar-inverse .githuband {
   color: #999999;
 }
 .navbar-inverse .navbar-text {
@@ -3946,7 +3946,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .btn-navbar.active {
   background-color: #000000 \9;
 }
-.breadcrumb {
+.githubeadcrumb {
   padding: 8px 15px;
   margin: 0 0 20px;
   list-style: none;
@@ -3955,7 +3955,7 @@ input[type="submit"].btn.btn-mini {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-.breadcrumb > li {
+.githubeadcrumb > li {
   display: inline-block;
   *display: inline;
   /* IE7 inline-block hack */
@@ -3963,11 +3963,11 @@ input[type="submit"].btn.btn-mini {
   *zoom: 1;
   text-shadow: 0 1px 0 #ffffff;
 }
-.breadcrumb > li > .divider {
+.githubeadcrumb > li > .divider {
   padding: 0 5px;
   color: #ccc;
 }
-.breadcrumb > .active {
+.githubeadcrumb > .active {
   color: #999999;
 }
 .pagination {
@@ -6178,7 +6178,7 @@ button.close {
     width: auto;
     padding: 0;
   }
-  .navbar .brand {
+  .navbar .githuband {
     padding-left: 10px;
     padding-right: 10px;
     margin: 0 0 0 -5px;
