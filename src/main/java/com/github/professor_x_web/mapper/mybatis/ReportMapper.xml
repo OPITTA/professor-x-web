@@ -18,7 +18,7 @@
         id, user_id, computer_id, title, status, create_time
     </sql>
     <sql id="Blob_Column_List" >
-        describe, content, summary
+        `describe`, content, summary
     </sql>
     <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
         select 
@@ -51,7 +51,7 @@
             and create_time = #{createTime,jdbcType=TIMESTAMP}
         </if>
         <if test="describe != null" >
-            and describe = #{describe,jdbcType=LONGVARCHAR}
+            and `describe` = #{describe,jdbcType=LONGVARCHAR}
         </if>
         <if test="content != null" >
             and content = #{content,jdbcType=LONGVARCHAR}
@@ -83,7 +83,7 @@
             and create_time = #{createTime,jdbcType=TIMESTAMP}
         </if>
         <if test="describe != null" >
-            and describe = #{describe,jdbcType=LONGVARCHAR}
+            and `describe` = #{describe,jdbcType=LONGVARCHAR}
         </if>
         <if test="content != null" >
             and content = #{content,jdbcType=LONGVARCHAR}
@@ -99,7 +99,7 @@
     <insert id="insert" parameterType="com.github.professor_x_web.model.ReportWithBLOBs" useGeneratedKeys="true" keyProperty="id">
         insert into report (id, user_id, computer_id, 
         title, status, create_time, 
-        describe, content, summary
+        `describe`, content, summary
         )
         values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{computerId,jdbcType=INTEGER}, 
         #{title,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
@@ -128,7 +128,7 @@
                 create_time,
             </if>
             <if test="describe != null" >
-                describe,
+                `describe`,
             </if>
             <if test="content != null" >
                 content,
@@ -186,7 +186,7 @@
                 create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="describe != null" >
-                describe = #{describe,jdbcType=LONGVARCHAR},
+                `describe` = #{describe,jdbcType=LONGVARCHAR},
             </if>
             <if test="content != null" >
                 content = #{content,jdbcType=LONGVARCHAR},
@@ -204,7 +204,7 @@
         title = #{title,jdbcType=VARCHAR},
         status = #{status,jdbcType=INTEGER},
         create_time = #{createTime,jdbcType=TIMESTAMP},
-        describe = #{describe,jdbcType=LONGVARCHAR},
+        `describe` = #{describe,jdbcType=LONGVARCHAR},
         content = #{content,jdbcType=LONGVARCHAR},
         summary = #{summary,jdbcType=LONGVARCHAR}
         where id = #{id,jdbcType=INTEGER}

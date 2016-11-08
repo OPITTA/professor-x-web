@@ -62,6 +62,7 @@ public class UserService {
             if (user.getPasswd().trim().equalsIgnoreCase(pass) && ResultStatus.isYES(realUser.getValied())) {
                 isOk = true;
                 user.setUserRole(realUser.getUserRole());
+                user.setId(realUser.getId());
             }
         }
 

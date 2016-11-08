@@ -13,7 +13,7 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_id, cpu_id, mem_id, dist_id, solid_dist_id, network_card_id, describe, create_time
+    id, user_id, cpu_id, mem_id, dist_id, solid_dist_id, network_card_id, `describe`, create_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -45,7 +45,7 @@
         and network_card_id = #{networkCardId,jdbcType=INTEGER}
     </if>
     <if test="describe != null" >
-        and describe = #{describe,jdbcType=VARCHAR}
+        and `describe` = #{describe,jdbcType=VARCHAR}
     </if>
     <if test="createTime != null" >
         and create_time = #{createTime,jdbcType=TIMESTAMP}
@@ -75,7 +75,7 @@
         and network_card_id = #{networkCardId,jdbcType=INTEGER}
     </if>
     <if test="describe != null" >
-        and describe = #{describe,jdbcType=VARCHAR}
+        and `describe` = #{describe,jdbcType=VARCHAR}
     </if>
     <if test="createTime != null" >
         and create_time = #{createTime,jdbcType=TIMESTAMP}
@@ -88,14 +88,14 @@
   <insert id="insert" parameterType="com.github.professor_x_web.model.Computer" useGeneratedKeys="true" keyProperty="id">>
     insert into computer (id, user_id, cpu_id, 
       mem_id, dist_id, solid_dist_id, 
-      network_card_id, describe, create_time
+      network_card_id, `describe`, create_time
       )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{cpuId,jdbcType=INTEGER}, 
       #{memId,jdbcType=INTEGER}, #{distId,jdbcType=INTEGER}, #{solidDistId,jdbcType=INTEGER}, 
       #{networkCardId,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.github.professor_x_web.model.Computer" useGeneratedKeys="true" keyProperty="id">>
+  <insert id="insertSelective" parameterType="com.github.professor_x_web.model.Computer" useGeneratedKeys="true" keyProperty="id">
     insert into computer
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -120,7 +120,7 @@
         network_card_id,
       </if>
       <if test="describe != null" >
-        describe,
+        `describe`,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -178,7 +178,7 @@
         network_card_id = #{networkCardId,jdbcType=INTEGER},
       </if>
       <if test="describe != null" >
-        describe = #{describe,jdbcType=VARCHAR},
+        `describe` = #{describe,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -194,7 +194,7 @@
       dist_id = #{distId,jdbcType=INTEGER},
       solid_dist_id = #{solidDistId,jdbcType=INTEGER},
       network_card_id = #{networkCardId,jdbcType=INTEGER},
-      describe = #{describe,jdbcType=VARCHAR},
+      `describe` = #{describe,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

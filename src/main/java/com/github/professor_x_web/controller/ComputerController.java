@@ -9,6 +9,8 @@ import com.github.professor_x_web.service.ComputerService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/computer/")
 public class ComputerController {
 
+    private static final Logger logger = LoggerFactory.getLogger(ComputerController.class);
+
     @Autowired
     private ComputerService computerService;
 
@@ -30,6 +34,7 @@ public class ComputerController {
     public String listAction(HttpServletRequest httpServletRequest, Model model) {
         HttpSession httpSession = httpServletRequest.getSession();
         Integer userId = (Integer) httpSession.getAttribute(Config.USER_ID);
+        logger.info("userId = {}", userId);
         List<Computer> computers = computerService.getComputerByUserId(userId);
         model.addAttribute("computers", computers);
         return "/computer/list";

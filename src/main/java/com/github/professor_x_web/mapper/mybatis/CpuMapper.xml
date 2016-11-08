@@ -10,7 +10,7 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id, model, frequency, core_num, describe, create_time
+        id, model, frequency, core_num, `describe`, create_time
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select 
@@ -33,7 +33,7 @@
             and core_num = #{coreNum,jdbcType=INTEGER}
         </if>
         <if test="describe != null" >
-            and describe = #{describe,jdbcType=VARCHAR}
+            and `describe` = #{describe,jdbcType=VARCHAR}
         </if>
         <if test="createTime != null" >
             and create_time = #{createTime,jdbcType=TIMESTAMP}
@@ -54,7 +54,7 @@
             and core_num = #{coreNum,jdbcType=INTEGER}
         </if>
         <if test="describe != null" >
-            and describe = #{describe,jdbcType=VARCHAR}
+            and `describe` = #{describe,jdbcType=VARCHAR}
         </if>
         <if test="createTime != null" >
             and create_time = #{createTime,jdbcType=TIMESTAMP}
@@ -66,7 +66,7 @@
     </delete>
     <insert id="insert" parameterType="com.github.professor_x_web.model.Cpu" useGeneratedKeys="true" keyProperty="id">
         insert into cpu (id, model, frequency, 
-        core_num, describe, create_time
+        core_num, `describe`, create_time
         )
         values (#{id,jdbcType=INTEGER}, #{model,jdbcType=VARCHAR}, #{frequency,jdbcType=REAL}, 
         #{coreNum,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
@@ -88,7 +88,7 @@
                 core_num,
             </if>
             <if test="describe != null" >
-                describe,
+                `describe`,
             </if>
             <if test="createTime != null" >
                 create_time,
@@ -128,7 +128,7 @@
                 core_num = #{coreNum,jdbcType=INTEGER},
             </if>
             <if test="describe != null" >
-                describe = #{describe,jdbcType=VARCHAR},
+                `describe` = #{describe,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null" >
                 create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -141,7 +141,7 @@
         set model = #{model,jdbcType=VARCHAR},
         frequency = #{frequency,jdbcType=REAL},
         core_num = #{coreNum,jdbcType=INTEGER},
-        describe = #{describe,jdbcType=VARCHAR},
+        `describe` = #{describe,jdbcType=VARCHAR},
         create_time = #{createTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=INTEGER}
     </update>
