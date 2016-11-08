@@ -1,0 +1,54 @@
+#set($top_menu="computer")
+#set($side_bar="computer")
+#set($tab_bar="edit")
+#parse("shared/header.vm")
+#parse("shared/top_menu.vm")
+#parse("shared/computer_side_bar.vm")
+<div class="row-fluid">
+<ul class="nav nav-tabs">
+    <li #if($!computerComponentTypeId == $!CPU.id) class="active" #end><a href="/professor_x_web/computer/edit/$!computerId/$!CPU.id">CPU</a></li>
+    <li #if($!computerComponentTypeId == $!MEMORY.id) class="active" #end><a href="/professor_x_web/computer/edit/$!computerId/$!MEMORY.id">内存</a></li>
+    <li #if($!computerComponentTypeId == $!DIST.id) class="active" #end><a href="/professor_x_web/computer/edit/$!computerId/$!DIST.id">磁盘</a></li>
+    <li #if($!computerComponentTypeId == $!SOLID_DIST.id) class="active" #end><a href="/professor_x_web/computer/edit/$!computerId/$!SOLID_DIST.id">固盘</a></li>
+    <li #if($!computerComponentTypeId == $!NERWORK_CARD.id) class="active" #end><a href="/professor_x_web/computer/edit/$!computerId/$!NERWORK_CARD.id">网卡</a></li>
+</ul>
+</div>
+<div class="row-fluid">
+<form id="computer_form" class="form-horizontal" action="/professor_x_web/computer/do_edit" method="post">
+    <fieldset>
+    <legend>CPU</legend>
+    <div class="control-group">
+    <label class="control-label" for="">品牌</label>
+        <div class="controls">
+        <input id="model" name="model" type="text" class="input-xlarge">
+        <input id="computerId" name="computerId" type="hidden" value = $!computerId>
+        <input id="computerComponentTypeId" name="computerComponentTypeId" type="hidden" value = $!computerComponentTypeId>
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">核心数</label>
+        <div class="controls">
+        <input id="coreNum" name="coreNum" type="text" class="input-xlarge">
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">频率</label>
+        <div class="controls">
+        <input id="frequency" name="frequency" type="text" class="input-xlarge">
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">描述</label>
+        <div class="controls">
+        <input id="describe" name="describe" type="text" class="input-xlarge" placeholder="可以根据sysbench测试的指标">
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
+        </div>
+    </div>
+</fieldset>
+</form>
+</div>
+#parse("shared/footer.vm")

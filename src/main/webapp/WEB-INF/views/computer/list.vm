@@ -28,35 +28,35 @@
         <td>$!computer.describe</td>
         <td>
             #if($!computer.cpuId < 1)
-                <a>未设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!CPU.id">设置</a>
             #else
                 <a>查看</a>
             #end
         </td>
         <td>
             #if($!computer.memId < 1)
-                <a>未设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!MEMORY.id">设置</a>
             #else
                 <a>查看</a>
             #end
         </td>
         <td>
             #if($!computer.distId < 1)
-                <a>未设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!DIST.id">设置</a>
             #else
                 <a>查看</a>
             #end
         </td>
         <td>
             #if($!computer.solidDistId < 1)
-                <a>未设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!SOLID_DIST.id">设置</a>
             #else
                 <a>查看</a>
             #end
         </td>
         <td>
             #if($!computer.networkCardId < 1)
-                <a>未设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!NERWORK_CARD.id">设置</a>
             #else
                 <a>查看</a>
             #end
