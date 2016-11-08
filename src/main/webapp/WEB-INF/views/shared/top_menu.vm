@@ -8,6 +8,9 @@
             </button>
             <a class="githuband" href="/professor_x_web">X教授-UI</a>
             <div class="nav-collapse collapse">
+                <p class="navbar-text pull-right">
+                    用户: <a href="#" class="navbar-link">$!userAccount</a>
+                </p>
                 <ul class="nav">
                 #if($!admin == "admin")
                 <li #if("manager" == $top_menu) class=active #end><a href="/professor_x_web/manager/user_center/list">管理中心</a></li>

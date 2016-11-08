@@ -67,8 +67,15 @@ public class LoginController {
             HttpSession httpSession = httpServletRequest.getSession(true);
             UserRole userRole = UserRole.fromId(user.getUserRole());
             httpSession.setAttribute(Config.USER_ROLE, userRole.getKey());
+            httpSession.setAttribute(Config.USER_ACCOUNT, user.getAccount());
             // 登录成功, 跳转的界面
-            return "redirect:/manager/user_center/list";
+            if (userRole == UserRole.COMMON) {
+                return "redirect:/computer/list";
+            } else if (userRole == UserRole.COMMON_ADMIN) {
+                return "redirect:/manager/user_center/list";
+            } else {
+                logger.error("account={} 用户的角色不能识别 UserRole.getId() == {}", user.getAccount(), user.getUserRole());
+            }
         }
         logger.error("account={} 登陆异常", user.getAccount());
         return "redirect:/login_form";

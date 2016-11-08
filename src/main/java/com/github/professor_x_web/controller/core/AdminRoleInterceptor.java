@@ -48,11 +48,14 @@ public class AdminRoleInterceptor extends HandlerInterceptorAdapter {
         if (modelAndView != null) {
             if (session.getAttribute(Config.USER_ROLE) != null) {
                 String userRole = (String) session.getAttribute(Config.USER_ROLE);
+                String userAccount = (String) session.getAttribute(Config.USER_ACCOUNT);
                 if (userRole.contains(UserRole.COMMON.getKey())) {
                     modelAndView.addObject(UserRole.COMMON.getKey(), UserRole.COMMON.getKey());
+                    modelAndView.addObject("userAccount", userAccount);
                 }
                 if (userRole.contains(UserRole.ADMIN.getKey())) {
                     modelAndView.addObject(UserRole.ADMIN.getKey(), UserRole.ADMIN.getKey());
+                    modelAndView.addObject("userAccount", userAccount);
                 }
             }
             modelAndView.addObject("DateUtil", DateUtil.getInstance());
