@@ -21,27 +21,35 @@
     <div class="control-group">
     <label class="control-label" for="">品牌</label>
         <div class="controls">
-        <input id="model" name="model" type="text" class="input-xlarge" placeholder="i7-6700...">
-        <input id="computerId" name="computerId" type="hidden" value = $!computerId>
+        #springBind("Cpu.model")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="i7-6700..." value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        <input id="computerId" name="computerId" type="hidden" value = $!computerId value="$!computerId">
         <input id="computerComponentTypeId" name="computerComponentTypeId" type="hidden" value = $!computerComponentTypeId>
         </div>
     </div>
     <div class="control-group">
     <label class="control-label" for="">核心数</label>
         <div class="controls">
-        <input id="coreNum" name="coreNum" type="text" class="input-xlarge" placeholder="单位:核">
+        #springBind("Cpu.coreNum")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="单位:核" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
         </div>
     </div>
     <div class="control-group">
     <label class="control-label" for="">频率</label>
         <div class="controls">
-        <input id="frequency" name="frequency" type="text" class="input-xlarge" placeholder="单位:GHZ">
+        #springBind("Cpu.frequency")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="单位:GHZ" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
         </div>
     </div>
     <div class="control-group">
     <label class="control-label" for="">描述</label>
         <div class="controls">
-        <input id="describe" name="describe" type="text" class="input-xlarge" placeholder="可以根据sysbench测试的指标">
+        #springBind("Cpu.describe")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="可以根据sysbench测试的指标" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
         </div>
     </div>
     <div class="control-group">

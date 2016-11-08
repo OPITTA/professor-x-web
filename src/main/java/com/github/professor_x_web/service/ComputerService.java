@@ -165,4 +165,58 @@ public class ComputerService {
         return computerMapper.selectAllSelective(computer);
     }
 
+    public Cpu getCpuByComputerId(int computerId) {
+        Computer computer = computerMapper.selectByPrimaryKey(computerId);
+        if (computer != null) {
+            int cpuId = computer.getCpuId();
+            if (cpuId > 0) {
+                return cpuMapper.selectByPrimaryKey(cpuId);
+            }
+        }
+        return null;
+    }
+
+    public Mem getMemoryByComputerId(int computerId) {
+        Computer computer = computerMapper.selectByPrimaryKey(computerId);
+        if (computer != null) {
+            int memId = computer.getMemId();
+            if (memId > 0) {
+                return memMapper.selectByPrimaryKey(memId);
+            }
+        }
+        return null;
+    }
+
+    public Dist getDistByComputerId(int computerId) {
+        Computer computer = computerMapper.selectByPrimaryKey(computerId);
+        if (computer != null) {
+            int distId = computer.getDistId();
+            if (distId > 0) {
+                return distMapper.selectByPrimaryKey(distId);
+            }
+        }
+        return null;
+    }
+
+    public SolidDist getSolidDistByComputerId(int computerId) {
+        Computer computer = computerMapper.selectByPrimaryKey(computerId);
+        if (computer != null) {
+            int solidDistId = computer.getSolidDistId();
+            if (solidDistId > 0) {
+                return solidDistMapper.selectByPrimaryKey(solidDistId);
+            }
+        }
+        return null;
+    }
+
+    public NetworkCard getNerworkCardByComputerId(int computerId) {
+        Computer computer = computerMapper.selectByPrimaryKey(computerId);
+        if (computer != null) {
+            int networkCardId = computer.getNetworkCardId();
+            if (networkCardId > 0) {
+                return networkCardMapper.selectByPrimaryKey(computerId);
+            }
+        }
+        return null;
+    }
 }
