@@ -1,165 +1,201 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.github.professor_x_web.mapper.ComputerMapper" >
-    <resultMap id="BaseResultMap" type="com.github.professor_x_web.model.Computer" >
-        <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="user_id" property="userId" jdbcType="INTEGER" />
-        <result column="cpu_id" property="cpuId" jdbcType="INTEGER" />
-        <result column="mem_id" property="memId" jdbcType="INTEGER" />
-        <result column="dist_id" property="distId" jdbcType="INTEGER" />
-        <result column="solid_dist_id" property="solidDistId" jdbcType="INTEGER" />
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    </resultMap>
-    <sql id="Base_Column_List" >
-        id, user_id, cpu_id, mem_id, dist_id, solid_dist_id, create_time
-    </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-        select 
-        <include refid="Base_Column_List" />
-        from computer
-        where id = #{id,jdbcType=INTEGER}
-    </select>
-    <select id="selectSelective" resultMap="BaseResultMap" parameterType="com.github.professor_x_web.model.Computer" >
-        select 
-        <include refid="Base_Column_List" />
-        from computer
-        where 1=1
-        <if test="userId != null" >
-            and user_id = #{userId,jdbcType=INTEGER}
-        </if>
-        <if test="cpuId != null" >
-            and cpu_id = #{cpuId,jdbcType=INTEGER}
-        </if>
-        <if test="memId != null" >
-            and mem_id = #{memId,jdbcType=INTEGER}
-        </if>
-        <if test="distId != null" >
-            and dist_id = #{distId,jdbcType=INTEGER}
-        </if>
-        <if test="solidDistId != null" >
-            and solid_dist_id = #{solidDistId,jdbcType=INTEGER}
-        </if>
-        <if test="createTime != null" >
-            and create_time = #{createTime,jdbcType=TIMESTAMP}
-        </if>
-    </select>
+  <resultMap id="BaseResultMap" type="com.github.professor_x_web.model.Computer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="cpu_id" property="cpuId" jdbcType="INTEGER" />
+    <result column="mem_id" property="memId" jdbcType="INTEGER" />
+    <result column="dist_id" property="distId" jdbcType="INTEGER" />
+    <result column="solid_dist_id" property="solidDistId" jdbcType="INTEGER" />
+    <result column="network_card_id" property="networkCardId" jdbcType="INTEGER" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, cpu_id, mem_id, dist_id, solid_dist_id, network_card_id, describe, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from computer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectSelective" resultMap="BaseResultMap" parameterType="com.github.professor_x_web.model.Computer" >
+    select 
+    <include refid="Base_Column_List" />
+    from computer
+    where 1=1
+    <if test="userId != null" >
+        and user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="cpuId != null" >
+        and cpu_id = #{cpuId,jdbcType=INTEGER}
+    </if>
+    <if test="memId != null" >
+        and mem_id = #{memId,jdbcType=INTEGER}
+    </if>
+    <if test="distId != null" >
+        and dist_id = #{distId,jdbcType=INTEGER}
+    </if>
+    <if test="solidDistId != null" >
+        and solid_dist_id = #{solidDistId,jdbcType=INTEGER}
+    </if>
+    <if test="networkCardId != null" >
+        and network_card_id = #{networkCardId,jdbcType=INTEGER}
+    </if>
+    <if test="describe != null" >
+        and describe = #{describe,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
     <select id="selectAllSelective" resultMap="BaseResultMap" parameterType="com.github.professor_x_web.model.Computer" >
-        select 
-        <include refid="Base_Column_List" />
-        from computer
-        where 1=1
-        <if test="userId != null" >
-            and user_id = #{userId,jdbcType=INTEGER}
-        </if>
-        <if test="cpuId != null" >
-            and cpu_id = #{cpuId,jdbcType=INTEGER}
-        </if>
-        <if test="memId != null" >
-            and mem_id = #{memId,jdbcType=INTEGER}
-        </if>
-        <if test="distId != null" >
-            and dist_id = #{distId,jdbcType=INTEGER}
-        </if>
-        <if test="solidDistId != null" >
-            and solid_dist_id = #{solidDistId,jdbcType=INTEGER}
-        </if>
-        <if test="createTime != null" >
-            and create_time = #{createTime,jdbcType=TIMESTAMP}
-        </if>
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-        delete from computer
-        where id = #{id,jdbcType=INTEGER}
-    </delete>
-    <insert id="insert" parameterType="com.github.professor_x_web.model.Computer"  useGeneratedKeys="true" keyProperty="id">
-        insert into computer (id, user_id, cpu_id, 
-        mem_id, dist_id, solid_dist_id, 
-        create_time)
-        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{cpuId,jdbcType=INTEGER}, 
-        #{memId,jdbcType=INTEGER}, #{distId,jdbcType=INTEGER}, #{solidDistId,jdbcType=INTEGER}, 
-        #{createTime,jdbcType=TIMESTAMP})
-    </insert>
-    <insert id="insertSelective" parameterType="com.github.professor_x_web.model.Computer"  useGeneratedKeys="true" keyProperty="id">
-        insert into computer
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="id != null" >
-                id,
-            </if>
-            <if test="userId != null" >
-                user_id,
-            </if>
-            <if test="cpuId != null" >
-                cpu_id,
-            </if>
-            <if test="memId != null" >
-                mem_id,
-            </if>
-            <if test="distId != null" >
-                dist_id,
-            </if>
-            <if test="solidDistId != null" >
-                solid_dist_id,
-            </if>
-            <if test="createTime != null" >
-                create_time,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="id != null" >
-                #{id,jdbcType=INTEGER},
-            </if>
-            <if test="userId != null" >
-                #{userId,jdbcType=INTEGER},
-            </if>
-            <if test="cpuId != null" >
-                #{cpuId,jdbcType=INTEGER},
-            </if>
-            <if test="memId != null" >
-                #{memId,jdbcType=INTEGER},
-            </if>
-            <if test="distId != null" >
-                #{distId,jdbcType=INTEGER},
-            </if>
-            <if test="solidDistId != null" >
-                #{solidDistId,jdbcType=INTEGER},
-            </if>
-            <if test="createTime != null" >
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.github.professor_x_web.model.Computer" >
-        update computer
-        <set >
-            <if test="userId != null" >
-                user_id = #{userId,jdbcType=INTEGER},
-            </if>
-            <if test="cpuId != null" >
-                cpu_id = #{cpuId,jdbcType=INTEGER},
-            </if>
-            <if test="memId != null" >
-                mem_id = #{memId,jdbcType=INTEGER},
-            </if>
-            <if test="distId != null" >
-                dist_id = #{distId,jdbcType=INTEGER},
-            </if>
-            <if test="solidDistId != null" >
-                solid_dist_id = #{solidDistId,jdbcType=INTEGER},
-            </if>
-            <if test="createTime != null" >
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-        </set>
-        where id = #{id,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.github.professor_x_web.model.Computer" >
-        update computer
-        set user_id = #{userId,jdbcType=INTEGER},
+    select 
+    <include refid="Base_Column_List" />
+    from computer
+    where 1=1
+    <if test="userId != null" >
+        and user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="cpuId != null" >
+        and cpu_id = #{cpuId,jdbcType=INTEGER}
+    </if>
+    <if test="memId != null" >
+        and mem_id = #{memId,jdbcType=INTEGER}
+    </if>
+    <if test="distId != null" >
+        and dist_id = #{distId,jdbcType=INTEGER}
+    </if>
+    <if test="solidDistId != null" >
+        and solid_dist_id = #{solidDistId,jdbcType=INTEGER}
+    </if>
+    <if test="networkCardId != null" >
+        and network_card_id = #{networkCardId,jdbcType=INTEGER}
+    </if>
+    <if test="describe != null" >
+        and describe = #{describe,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from computer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.github.professor_x_web.model.Computer" useGeneratedKeys="true" keyProperty="id">>
+    insert into computer (id, user_id, cpu_id, 
+      mem_id, dist_id, solid_dist_id, 
+      network_card_id, describe, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{cpuId,jdbcType=INTEGER}, 
+      #{memId,jdbcType=INTEGER}, #{distId,jdbcType=INTEGER}, #{solidDistId,jdbcType=INTEGER}, 
+      #{networkCardId,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.github.professor_x_web.model.Computer" useGeneratedKeys="true" keyProperty="id">>
+    insert into computer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="cpuId != null" >
+        cpu_id,
+      </if>
+      <if test="memId != null" >
+        mem_id,
+      </if>
+      <if test="distId != null" >
+        dist_id,
+      </if>
+      <if test="solidDistId != null" >
+        solid_dist_id,
+      </if>
+      <if test="networkCardId != null" >
+        network_card_id,
+      </if>
+      <if test="describe != null" >
+        describe,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cpuId != null" >
+        #{cpuId,jdbcType=INTEGER},
+      </if>
+      <if test="memId != null" >
+        #{memId,jdbcType=INTEGER},
+      </if>
+      <if test="distId != null" >
+        #{distId,jdbcType=INTEGER},
+      </if>
+      <if test="solidDistId != null" >
+        #{solidDistId,jdbcType=INTEGER},
+      </if>
+      <if test="networkCardId != null" >
+        #{networkCardId,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.github.professor_x_web.model.Computer" >
+    update computer
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cpuId != null" >
         cpu_id = #{cpuId,jdbcType=INTEGER},
+      </if>
+      <if test="memId != null" >
         mem_id = #{memId,jdbcType=INTEGER},
+      </if>
+      <if test="distId != null" >
         dist_id = #{distId,jdbcType=INTEGER},
+      </if>
+      <if test="solidDistId != null" >
         solid_dist_id = #{solidDistId,jdbcType=INTEGER},
-        create_time = #{createTime,jdbcType=TIMESTAMP}
-        where id = #{id,jdbcType=INTEGER}
-    </update>
+      </if>
+      <if test="networkCardId != null" >
+        network_card_id = #{networkCardId,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null" >
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.github.professor_x_web.model.Computer" >
+    update computer
+    set user_id = #{userId,jdbcType=INTEGER},
+      cpu_id = #{cpuId,jdbcType=INTEGER},
+      mem_id = #{memId,jdbcType=INTEGER},
+      dist_id = #{distId,jdbcType=INTEGER},
+      solid_dist_id = #{solidDistId,jdbcType=INTEGER},
+      network_card_id = #{networkCardId,jdbcType=INTEGER},
+      describe = #{describe,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -23,10 +23,10 @@ public class ReportService {
         return reportMapper.insertSelective(report) > 0;
     }
 
-    public List<ReportWithBLOBs> getReportByUserId (int userId) {
+    public List<ReportWithBLOBs> getReportByUserId(int userId) {
         ReportWithBLOBs report = new ReportWithBLOBs();
         report.setUserId(userId);
-        return null;
+        return reportMapper.selectAllSelective(report);
     }
 
 }

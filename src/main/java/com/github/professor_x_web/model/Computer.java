@@ -16,6 +16,10 @@ public class Computer {
 
     private Integer solidDistId;
 
+    private Integer networkCardId;
+
+    private String describe;
+
     private Date createTime;
 
     public Integer getId() {
@@ -64,6 +68,22 @@ public class Computer {
 
     public void setSolidDistId(Integer solidDistId) {
         this.solidDistId = solidDistId;
+    }
+
+    public Integer getNetworkCardId() {
+        return networkCardId;
+    }
+
+    public void setNetworkCardId(Integer networkCardId) {
+        this.networkCardId = networkCardId;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 
     public Date getCreateTime() {

@@ -8,4 +8,5 @@ public class Config {
 
     public static final String USER_ROLE = "user_role";
     public static final String USER_ACCOUNT = "user_account";
+    public static final String USER_ID = "user_id";
 }

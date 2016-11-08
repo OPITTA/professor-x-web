@@ -10,12 +10,30 @@
   <thead>
     <tr>
         <th>ID</th>
+        <th>CPU</th>
+        <th>内存</th>
+        <th>磁盘</th>
+        <th>固盘</th>
+        <th>网卡</th>
+        <th>标签</th>
+        <th>创建时间</th>
+        <th>设置</th>
     </tr>
   </thead>
   <tbody>
+    #foreach($computer in $computers)
     <tr>
-        <td>1</td>
+        <td>$!computer.id</td>
+        <td>$!computer.cpuId</td>
+        <td>$!computer.memId</td>
+        <td>$!computer.distId</td>
+        <td>$!computer.solidDistId</td>
+        <td>$!computer.networkCardId</td>
+        <td>$!computer.describe</td>
+        <td>$!DateUtil.formatForDate1($!computer.createTime)</td>
+        <td><a>-&gt;</a></td>
     </tr>
+    #end
   </tbody>
 </table>
 </div>

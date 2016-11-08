@@ -68,6 +68,7 @@ public class LoginController {
             UserRole userRole = UserRole.fromId(user.getUserRole());
             httpSession.setAttribute(Config.USER_ROLE, userRole.getKey());
             httpSession.setAttribute(Config.USER_ACCOUNT, user.getAccount());
+            httpSession.setAttribute(Config.USER_ID, user.getId());
             // 登录成功, 跳转的界面
             if (userRole == UserRole.COMMON) {
                 return "redirect:/computer/list";

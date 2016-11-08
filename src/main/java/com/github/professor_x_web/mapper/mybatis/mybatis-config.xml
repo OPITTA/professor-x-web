@@ -19,6 +19,7 @@
         <typeAlias type="com.github.professor_x_web.model.SolidDist" alias="SolidDist"/>
         <typeAlias type="com.github.professor_x_web.model.Report" alias="Report"/>
         <typeAlias type="com.github.professor_x_web.model.Data" alias="Data"/>
+        <typeAlias type="com.github.professor_x_web.model.NetworkCard" alias="NetworkCard"/>
     </typeAliases>
 
     <mappers>
@@ -30,6 +31,7 @@
         <mapper resource="SolidDistMapper.xml" />
         <mapper resource="ReportMapper.xml" />
         <mapper resource="DataMapper.xml" />
+        <mapper resource="NetworkCardMapper.xml" />
     </mappers>
 
 </configuration>

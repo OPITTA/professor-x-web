@@ -14,11 +14,13 @@ INSERT INTO `user` (`account`, `passwd`, `email`, `user_role`, `valied`)VALUES("
 
 CREATE TABLE IF NOT EXISTS `computer` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `user_id` int(11) NOT NULL,
-    `cpu_id` int(11) NOT NULL,
-    `mem_id` int(11) NOT NULL,
-    `dist_id` int(11) NOT NULL,
-    `solid_dist_id` int(11) NOT NULL,
+    `user_id` int(11) NOT NULL DEFAULT -1,
+    `cpu_id` int(11) NOT NULL DEFAULT -1,
+    `mem_id` int(11) NOT NULL DEFAULT -1,
+    `dist_id` int(11) NOT NULL DEFAULT -1,
+    `solid_dist_id` int(11) NOT NULL DEFAULT -1,
+    `network_card_id` int(11) NOT NULL DEFAULT -1,
+    `describe` varchar(255) NOT NULL,
     `create_time` timestamp NOT NULL DEFAULT NOW(),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -27,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `cpu` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `model` varchar(255) NOT NULL,
     `frequency` float(11),
-    `core_num` int(11) NOT NULL,
+    `core_num` int(11) NOT NULL DEFAULT -1,
     `describe` varchar(255) NOT NULL,
     `create_time` timestamp NOT NULL DEFAULT NOW(),
     PRIMARY KEY (`id`)
@@ -36,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `cpu` (
 CREATE TABLE IF NOT EXISTS `mem` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `model` varchar(255) NOT NULL,
-    `capacity` int(11) NOT NULL,
+    `capacity` int(11) NOT NULL DEFAULT -1,
     `describe` varchar(255) NOT NULL,
     `create_time` timestamp NOT NULL DEFAULT NOW(),
     PRIMARY KEY (`id`)
@@ -45,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `mem` (
 CREATE TABLE IF NOT EXISTS `dist` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `model` varchar(255) NOT NULL,
-    `capacity` int(11) NOT NULL,
-    `speed` int(11) NOT NULL,
+    `capacity` int(11) NOT NULL DEFAULT -1,
+    `speed` int(11) NOT NULL DEFAULT -1,
     `describe` varchar(255) NOT NULL,
     `create_time` timestamp NOT NULL DEFAULT NOW(),
     PRIMARY KEY (`id`)
@@ -55,7 +57,16 @@ CREATE TABLE IF NOT EXISTS `dist` (
 CREATE TABLE IF NOT EXISTS `solid_dist` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `model` varchar(255) NOT NULL,
-    `capacity` int(11) NOT NULL,
+    `capacity` int(11) NOT NULL DEFAULT -1,
+    `describe` varchar(255) NOT NULL,
+    `create_time` timestamp NOT NULL DEFAULT NOW(),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `network_card` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `model` varchar(255) NOT NULL,
+    `speed` int(11) NOT NULL DEFAULT -1,
     `describe` varchar(255) NOT NULL,
     `create_time` timestamp NOT NULL DEFAULT NOW(),
     PRIMARY KEY (`id`)
@@ -63,26 +74,26 @@ CREATE TABLE IF NOT EXISTS `solid_dist` (
 
 CREATE TABLE IF NOT EXISTS `report` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `user_id` int(11) NOT NULL,
-    `computer_id` int(11) NOT NULL,
+    `user_id` int(11) NOT NULL DEFAULT -1,
+    `computer_id` int(11) NOT NULL DEFAULT -1,
     `title` varchar(255) NOT NULL,
     `describe` text NOT NULL,
     `content` text NOT NULL,
     `summary` text NOT NULL,
-    `status` int(11) NOT NULL,
+    `status` int(11) NOT NULL DEFAULT -1,
     `create_time` timestamp NOT NULL DEFAULT NOW(),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `data` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `report_id` int(11) NOT NULL,
-    `average_rt` int(11) NOT NULL,
-    `min_rt` int(11) NOT NULL,
-    `max_rt` int(11) NOT NULL,
-    `tps` int(11) NOT NULL,
-    `concurrency` int(11) NOT NULL,
-    `error_rate` int(11) NOT NULL,
+    `report_id` int(11) NOT NULL DEFAULT -1,
+    `average_rt` int(11) NOT NULL DEFAULT -1,
+    `min_rt` int(11) NOT NULL DEFAULT -1,
+    `max_rt` int(11) NOT NULL DEFAULT -1,
+    `tps` int(11) NOT NULL DEFAULT -1,
+    `concurrency` int(11) NOT NULL DEFAULT -1,
+    `error_rate` int(11) NOT NULL DEFAULT -1,
     `create_time` timestamp NOT NULL DEFAULT NOW(),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
