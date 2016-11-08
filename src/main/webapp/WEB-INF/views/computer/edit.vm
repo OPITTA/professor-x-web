@@ -13,6 +13,7 @@
     <li #if($!computerComponentTypeId == $!NERWORK_CARD.id) class="active" #end><a href="/professor_x_web/computer/edit/$!computerId/$!NERWORK_CARD.id">网卡</a></li>
 </ul>
 </div>
+#if($!computerComponentTypeId == $!CPU.id)
 <div class="row-fluid">
 <form id="computer_form" class="form-horizontal" action="/professor_x_web/computer/do_edit" method="post">
     <fieldset>
@@ -20,7 +21,7 @@
     <div class="control-group">
     <label class="control-label" for="">品牌</label>
         <div class="controls">
-        <input id="model" name="model" type="text" class="input-xlarge">
+        <input id="model" name="model" type="text" class="input-xlarge" placeholder="i7-6700...">
         <input id="computerId" name="computerId" type="hidden" value = $!computerId>
         <input id="computerComponentTypeId" name="computerComponentTypeId" type="hidden" value = $!computerComponentTypeId>
         </div>
@@ -28,13 +29,13 @@
     <div class="control-group">
     <label class="control-label" for="">核心数</label>
         <div class="controls">
-        <input id="coreNum" name="coreNum" type="text" class="input-xlarge">
+        <input id="coreNum" name="coreNum" type="text" class="input-xlarge" placeholder="单位:核">
         </div>
     </div>
     <div class="control-group">
     <label class="control-label" for="">频率</label>
         <div class="controls">
-        <input id="frequency" name="frequency" type="text" class="input-xlarge">
+        <input id="frequency" name="frequency" type="text" class="input-xlarge" placeholder="单位:GHZ">
         </div>
     </div>
     <div class="control-group">
@@ -51,4 +52,5 @@
 </fieldset>
 </form>
 </div>
+#end
 #parse("shared/footer.vm")
