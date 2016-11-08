@@ -6,35 +6,43 @@
 #parse("shared/computer_side_bar.vm")
 #parse("shared/computer_tab_bar.vm")
 <div class="row-fluid">
+#if($computers && $computers.size()>0)
 <table class="table">
   <thead>
     <tr>
         <th>ID</th>
+        <th>标签</th>
         <th>CPU</th>
         <th>内存</th>
         <th>磁盘</th>
         <th>固盘</th>
         <th>网卡</th>
-        <th>标签</th>
         <th>创建时间</th>
         <th>设置</th>
     </tr>
   </thead>
   <tbody>
+    #set($i=1)
     #foreach($computer in $computers)
     <tr>
-        <td>$!computer.id</td>
+        <td>$i</td>
+        <td>$!computer.describe</td>
         <td>$!computer.cpuId</td>
         <td>$!computer.memId</td>
         <td>$!computer.distId</td>
         <td>$!computer.solidDistId</td>
         <td>$!computer.networkCardId</td>
-        <td>$!computer.describe</td>
         <td>$!DateUtil.formatForDate1($!computer.createTime)</td>
         <td><a>-&gt;</a></td>
     </tr>
+    #set($i = $i + 1)
     #end
   </tbody>
 </table>
+#else
+<div class="hero-unit">
+    <h2>去添加宝贝吧!</h2>
+</div>
+#end
 </div>
 #parse("shared/footer.vm")

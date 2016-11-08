@@ -56,6 +56,6 @@ public class ComputerController {
             computer.setDescribe(describe);
             computerService.createComputer(computer);
         }
-        return "/computer/list";
+        return "redirect:/computer/list";
     }
 }
