@@ -1,0 +1,54 @@
+#set($top_menu="computer")
+#set($side_bar="computer")
+#set($tab_bar="add")
+#parse("shared/header.vm")
+#parse("shared/top_menu.vm")
+#parse("shared/computer_side_bar.vm")
+#parse("shared/computer_tab_bar.vm")
+<div class="row-fluid">
+<form id="register_form" class="form-horizontal" action="/professor_x_web/computer/do_add" method="post">
+    <fieldset>
+    <legend>添加机器</legend>
+    <div class="control-group">
+    <label class="control-label" for="">帐号</label>
+        <div class="controls">
+            #springBind("User.account")
+            <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="帐号" value="$!status.value">
+            #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+            <div id="check_account"></div>
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">邮箱</label>
+        <div class="controls">
+            #springBind("User.email")
+            <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="邮箱" value="$!status.value">
+            #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+            <div id="check_email"></div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">密码</label>
+        <div class="controls">
+            #springBind("User.passwd")
+            <input id="${status.expression}" name="${status.expression}" type="password" class="input-xlarge" placeholder="密码" value="$!status.value">
+            #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">确认密码</label>
+        <div class="controls">
+            #springBind("User.againPasswd")
+            <input id="${status.expression}" name="${status.expression}" type="password" class="input-xlarge" placeholder="确认密码" value="$!status.value">
+            #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+                <button id="submit" type="text" class="btn btn-large btn-primary">提交</button>
+        </div>
+    </div>
+</fieldset>
+</form>
+</div>
+#parse("shared/footer.vm")
