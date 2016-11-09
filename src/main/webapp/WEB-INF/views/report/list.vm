@@ -6,17 +6,37 @@
 #parse("shared/report_side_bar.vm")
 #parse("shared/report_tab_bar.vm")
 <div class="row-fluid">
+#if($reports && $reports.size()>0)
 <table class="table">
   <thead>
     <tr>
         <th>ID</th>
+        <th>标题</th>
+        <th>概括</th>
+        <th>机器</th>
+        <th>状态</th>
+        <th>创建时间</th>
     </tr>
   </thead>
   <tbody>
+    #set($i=1)
+    #foreach($report in $reports)
     <tr>
-        <td>1</td>
+        <td>$i</td>
+        <td>$!report.title</td>
+        <td>$!report.summary</td>
+        <td>$!report.computerId</td>
+        <td>$!report.status</td>
+        <td>$!DateUtil.formatForDate1($!report.createTime)</td>
     </tr>
+    #set($i = $i + 1)
+    #end
   </tbody>
 </table>
+#else
+<div class="hero-unit">
+    <h2>去添加报告吧!</h2>
+</div>
+#end
 </div>
 #parse("shared/footer.vm")
