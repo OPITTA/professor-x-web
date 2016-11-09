@@ -89,6 +89,17 @@ public class ReportController {
     public String doAddAction(@Valid ReportWithBLOBs report, HttpServletRequest httpServletRequest, Model model, BindingResult bindingResult) {
         HttpSession httpSession = httpServletRequest.getSession();
         Integer userId = (Integer) httpSession.getAttribute(Config.USER_ID);
+        String[] computerIds = httpServletRequest.getParameterValues("computerIds[]");
+        if (computerIds == null || computerIds.length < 1) {
+            return "redirect:/report/list";
+        }
+        StringBuilder formatComputerIds = new StringBuilder("[");
+        for (String computerId : computerIds) {
+            formatComputerIds.append(computerId).append(",");
+        }
+        if (formatComputerIds.length() > 1) {
+            report.setComputerIds(formatComputerIds.substring(0, formatComputerIds.length() - 1) + "]");
+        }
         if (!bindingResult.hasErrors()) {
             reportService.createReport(userId, report);
         }
