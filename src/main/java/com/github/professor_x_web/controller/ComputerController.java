@@ -86,26 +86,41 @@ public class ComputerController {
         switch (computerComponentType) {
             case CPU: {
                 Cpu cpu = computerService.getCpuByComputerId(computerId);
+                if (cpu == null) {
+                    cpu = new Cpu();
+                }
                 model.addAttribute("Cpu", cpu);
                 break;
             }
             case MEMORY: {
                 Mem mem = computerService.getMemoryByComputerId(computerId);
+                if (mem == null) {
+                    mem = new Mem();
+                }
                 model.addAttribute("Mem", mem);
                 break;
             }
             case DIST: {
                 Dist dist = computerService.getDistByComputerId(computerId);
+                if (dist == null) {
+                    dist = new Dist();
+                }
                 model.addAttribute("Dist", dist);
                 break;
             }
             case SOLID_DIST: {
                 SolidDist solidDist = computerService.getSolidDistByComputerId(computerId);
+                if (solidDist == null) {
+                    solidDist = new SolidDist();
+                }
                 model.addAttribute("SolidDist", solidDist);
                 break;
             }
             case NERWORK_CARD: {
                 NetworkCard networkCard = computerService.getNerworkCardByComputerId(computerId);
+                if (networkCard == null) {
+                    networkCard = new NetworkCard();
+                }
                 model.addAttribute("NetworkCard", networkCard);
                 break;
             }

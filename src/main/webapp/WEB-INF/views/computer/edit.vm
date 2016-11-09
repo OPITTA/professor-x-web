@@ -61,4 +61,172 @@
 </form>
 </div>
 #end
+#if($!computerComponentTypeId == $!MEMORY.id)
+<div class="row-fluid">
+<form id="computer_form" class="form-horizontal" action="/professor_x_web/computer/do_edit" method="post">
+    <fieldset>
+    <legend>内存</legend>
+    <div class="control-group">
+    <label class="control-label" for="">品牌</label>
+        <div class="controls">
+        #springBind("Mem.model")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="DDR4 2133..." value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        <input id="computerId" name="computerId" type="hidden" value = $!computerId value="$!computerId">
+        <input id="computerComponentTypeId" name="computerComponentTypeId" type="hidden" value = $!computerComponentTypeId>
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">容量</label>
+        <div class="controls">
+        #springBind("Mem.capacity")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="单位:G" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">描述</label>
+        <div class="controls">
+        #springBind("Mem.describe")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="可以根据sysbench测试的指标" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
+        </div>
+    </div>
+</fieldset>
+</form>
+</div>
+#end
+#if($!computerComponentTypeId == $!DIST.id)
+<div class="row-fluid">
+<form id="computer_form" class="form-horizontal" action="/professor_x_web/computer/do_edit" method="post">
+    <fieldset>
+    <legend>磁盘</legend>
+    <div class="control-group">
+    <label class="control-label" for="">品牌</label>
+        <div class="controls">
+        #springBind("Dist.model")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="希捷 Seagate" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        <input id="computerId" name="computerId" type="hidden" value = $!computerId value="$!computerId">
+        <input id="computerComponentTypeId" name="computerComponentTypeId" type="hidden" value = $!computerComponentTypeId>
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">容量</label>
+        <div class="controls">
+        #springBind("Dist.capacity")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="单位:G" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">转速</label>
+        <div class="controls">
+        #springBind("Dist.speed")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="单位:转/分钟" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">描述</label>
+        <div class="controls">
+        #springBind("Dist.describe")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="可以根据sysbench测试的指标" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
+        </div>
+    </div>
+</fieldset>
+</form>
+</div>
+#end
+#if($!computerComponentTypeId == $!SOLID_DIST.id)
+<div class="row-fluid">
+<form id="computer_form" class="form-horizontal" action="/professor_x_web/computer/do_edit" method="post">
+    <fieldset>
+    <legend>固盘</legend>
+    <div class="control-group">
+    <label class="control-label" for="">品牌</label>
+        <div class="controls">
+        #springBind("SolidDist.model")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="东芝Q300 960G" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        <input id="computerId" name="computerId" type="hidden" value = $!computerId value="$!computerId">
+        <input id="computerComponentTypeId" name="computerComponentTypeId" type="hidden" value = $!computerComponentTypeId>
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">容量</label>
+        <div class="controls">
+        #springBind("SolidDist.capacity")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="单位:G" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">描述</label>
+        <div class="controls">
+        #springBind("SolidDist.describe")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="可以根据sysbench测试的指标" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
+        </div>
+    </div>
+</fieldset>
+</form>
+</div>
+#end
+#if($!computerComponentTypeId == $!NERWORK_CARD.id)
+<div class="row-fluid">
+<form id="computer_form" class="form-horizontal" action="/professor_x_web/computer/do_edit" method="post">
+    <fieldset>
+    <legend>网卡</legend>
+    <div class="control-group">
+    <label class="control-label" for="">品牌</label>
+        <div class="controls">
+        #springBind("NetworkCard.model")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="BL-P8168" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        <input id="computerId" name="computerId" type="hidden" value = $!computerId value="$!computerId">
+        <input id="computerComponentTypeId" name="computerComponentTypeId" type="hidden" value = $!computerComponentTypeId>
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">速度</label>
+        <div class="controls">
+        #springBind("NetworkCard.speed")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="单位:Mbps" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">描述</label>
+        <div class="controls">
+        #springBind("NetworkCard.describe")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="可以根据sysbench测试的指标" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
+        </div>
+    </div>
+</fieldset>
+</form>
+</div>
+#end
 #parse("shared/footer.vm")

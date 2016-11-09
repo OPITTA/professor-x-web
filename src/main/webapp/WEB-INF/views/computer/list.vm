@@ -28,37 +28,37 @@
         <td>$!computer.describe</td>
         <td>
             #if($!computer.cpuId < 1)
-                <a href="/professor_x_web/computer/edit/$computer.id/$!CPU.id">未设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!CPU.id">无</a>
             #else
-                <a href="/professor_x_web/computer/edit/$computer.id/$!CPU.id">已设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!CPU.id">有</a>
             #end
         </td>
         <td>
             #if($!computer.memId < 1)
-                <a href="/professor_x_web/computer/edit/$computer.id/$!MEMORY.id">未设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!MEMORY.id">无</a>
             #else
-                <a href="/professor_x_web/computer/edit/$computer.id/$!MEMORY.id">已设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!MEMORY.id">有</a>
             #end
         </td>
         <td>
             #if($!computer.distId < 1)
-                <a href="/professor_x_web/computer/edit/$computer.id/$!DIST.id">未设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!DIST.id">无</a>
             #else
-                <a href="/professor_x_web/computer/edit/$computer.id/$!DIST.id">已设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!DIST.id">有</a>
             #end
         </td>
         <td>
             #if($!computer.solidDistId < 1)
-                <a href="/professor_x_web/computer/edit/$computer.id/$!SOLID_DIST.id">未设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!SOLID_DIST.id">无</a>
             #else
-                <a href="/professor_x_web/computer/edit/$computer.id/$!SOLID_DIST.id">已设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!SOLID_DIST.id">有</a>
             #end
         </td>
         <td>
             #if($!computer.networkCardId < 1)
-                <a href="/professor_x_web/computer/edit/$computer.id/$!NERWORK_CARD.id">未设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!NERWORK_CARD.id">无</a>
             #else
-                <a href="/professor_x_web/computer/edit/$computer.id/$!NERWORK_CARD.id">已设置</a>
+                <a href="/professor_x_web/computer/edit/$computer.id/$!NERWORK_CARD.id">有</a>
             #end
         </td>
         <td>$!DateUtil.formatForDate1($!computer.createTime)</td>
