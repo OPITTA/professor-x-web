@@ -4,13 +4,19 @@
 package com.github.professor_x_web.controller;
 
 import com.github.professor_x_web.constent.Config;
+import com.github.professor_x_web.model.Computer;
 import com.github.professor_x_web.model.ReportWithBLOBs;
 import com.github.professor_x_web.service.ComputerService;
 import com.github.professor_x_web.service.ReportService;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/report/")
 public class ReportController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ReportController.class);
 
     @Autowired
     private ReportService reportService;
@@ -50,8 +58,25 @@ public class ReportController {
         Integer userId = (Integer) httpSession.getAttribute(Config.USER_ID);
         if (reportId != null && reportId > 0) {
             ReportWithBLOBs report = reportService.getReportById(reportId);
-            if(report != null) {
+            if (report != null) {
+                List<Computer> computers = computerService.getComputerByUserId(userId);
+                model.addAttribute("computers", computers);
                 model.addAttribute("report", report);
+                String computerIds = report.getComputerIds();
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    List<Integer> list = objectMapper.readValue(computerIds, ArrayList.class);
+                    for (Computer c : computers) {
+                        for (Integer computerId : list) {
+                            if (c.getId() == computerId) {
+                                c.setUsed(Boolean.TRUE);
+                            }
+                        }
+                    }
+
+                } catch (IOException ex) {
+                    logger.error(ex.getMessage());
+                }
                 return "/report/add";
             }
         }

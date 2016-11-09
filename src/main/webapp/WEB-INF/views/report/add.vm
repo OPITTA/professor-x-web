@@ -24,7 +24,7 @@
     <label>机器</label>
     #foreach($computer in $computers)
     <label id="computerIds" class="checkbox inline">
-    <input type="checkbox" id="computerIds[]" name="computerIds[]" value="$!computer.id">$!computer.describe
+    <input type="checkbox" id="computerIds[]" name="computerIds[]" value="$!computer.id" #if($!computer.used)checked="checked"#end>$!computer.describe
     </label>
     #end
     <label>状态</label>

@@ -22,6 +22,8 @@ public class Computer {
 
     private Date createTime;
 
+    private Boolean used = false;
+
     public Integer getId() {
         return id;
     }
@@ -93,4 +95,13 @@ public class Computer {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    public Boolean getUsed() {
+        return used;
+    }
+
+    public void setUsed(Boolean used) {
+        this.used = used;
+    }
+
 }
