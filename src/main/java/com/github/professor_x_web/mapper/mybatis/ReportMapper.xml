@@ -96,7 +96,7 @@
         delete from report
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.github.professor_x_web.model.ReportWithBLOBs" >
+    <insert id="insert" parameterType="com.github.professor_x_web.model.ReportWithBLOBs" useGeneratedKeys="true" keyProperty="id">
         insert into report (id, user_id, computer_ids, 
         title, status, create_time, 
         `describe`, content, summary
@@ -106,7 +106,7 @@
         #{describe,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}, #{summary,jdbcType=LONGVARCHAR}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.github.professor_x_web.model.ReportWithBLOBs" >
+    <insert id="insertSelective" parameterType="com.github.professor_x_web.model.ReportWithBLOBs" useGeneratedKeys="true" keyProperty="id">
         insert into report
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >

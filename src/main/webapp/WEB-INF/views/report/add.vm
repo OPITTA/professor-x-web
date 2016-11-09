@@ -1,0 +1,71 @@
+#set($top_menu="report")
+#set($side_bar="report")
+#set($tab_bar="add")
+#parse("shared/header.vm")
+#parse("shared/top_menu.vm")
+#parse("shared/report_side_bar.vm")
+#parse("shared/report_tab_bar.vm")
+<div class="row-fluid">
+<form id="report_form" class="form-horizontal" action="/professor_x_web/report/do_add" method="post">
+    <fieldset>
+    <legend>报告</legend>
+    <div class="control-group">
+    <label class="control-label" for="">标题</label>
+        <div class="controls">
+        #springBind("report.title")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        #springBind("report.id")
+        <input id="${status.expression}" name="${status.expression}" type="hidden" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">概括</label>
+        <div class="controls">
+        #springBind("report.summary")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">机器</label>
+        <div class="controls">
+        #springBind("report.computerIds")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">状态</label>
+        <div class="controls">
+        #springBind("report.status")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">方案</label>
+        <div class="controls">
+        #springBind("report.content")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="">总结</label>
+        <div class="controls">
+        #springBind("report.describe")
+        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
+        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
+        </div>
+    </div>
+</fieldset>
+</form>
+</div>
+#parse("shared/footer.vm")

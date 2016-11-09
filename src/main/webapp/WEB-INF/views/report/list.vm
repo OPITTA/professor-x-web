@@ -16,6 +16,7 @@
         <th>机器</th>
         <th>状态</th>
         <th>创建时间</th>
+        <th>操作</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,7 @@
         <td>$!report.computerIds</td>
         <td>$!report.status</td>
         <td>$!DateUtil.formatForDate1($!report.createTime)</td>
+        <td><a href="/professor_x_web/report/add/$report.id">详情</a></td>
     </tr>
     #set($i = $i + 1)
     #end

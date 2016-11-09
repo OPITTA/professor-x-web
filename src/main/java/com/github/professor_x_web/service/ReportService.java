@@ -19,7 +19,19 @@ public class ReportService {
     @Autowired
     private ReportMapper reportMapper;
 
-    public boolean createReport(ReportWithBLOBs report) {
+    public boolean createReport(int userId, ReportWithBLOBs report) {
+        if (report == null) {
+            return false;
+        }
+        if (report.getId() != null && report.getId() > 0) {
+            ReportWithBLOBs realReport = reportMapper.selectByPrimaryKey(report.getId());
+            if (realReport != null && realReport.getUserId() == userId) {
+                reportMapper.updateByPrimaryKeySelective(report);
+                return true;
+            }
+        }
+        report.setId(null);
+        report.setUserId(userId);
         return reportMapper.insertSelective(report) > 0;
     }
 
@@ -29,4 +41,7 @@ public class ReportService {
         return reportMapper.selectAllSelective(report);
     }
 
+    public ReportWithBLOBs getReportById(int id) {
+        return reportMapper.selectByPrimaryKey(id);
+    }
 }
