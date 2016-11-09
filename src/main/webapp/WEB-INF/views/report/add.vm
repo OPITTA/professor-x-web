@@ -6,66 +6,46 @@
 #parse("shared/report_side_bar.vm")
 #parse("shared/report_tab_bar.vm")
 <div class="row-fluid">
+#if($computers && $computers.size() > 0)
 <form id="report_form" class="form-horizontal" action="/professor_x_web/report/do_add" method="post">
     <fieldset>
     <legend>报告</legend>
-    <div class="control-group">
-    <label class="control-label" for="">标题</label>
-        <div class="controls">
-        #springBind("report.title")
-        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
-        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
-        #springBind("report.id")
-        <input id="${status.expression}" name="${status.expression}" type="hidden" value="$!status.value">
-        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
-        </div>
-    </div>
-    <div class="control-group">
-    <label class="control-label" for="">概括</label>
-        <div class="controls">
-        #springBind("report.summary")
-        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
-        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
-        </div>
-    </div>
-    <div class="control-group">
-    <label class="control-label" for="">机器</label>
-        <div class="controls">
-        #springBind("report.computerIds")
-        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
-        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
-        </div>
-    </div>
-    <div class="control-group">
-    <label class="control-label" for="">状态</label>
-        <div class="controls">
-        #springBind("report.status")
-        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
-        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
-        </div>
-    </div>
-    <div class="control-group">
-    <label class="control-label" for="">方案</label>
-        <div class="controls">
-        #springBind("report.content")
-        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
-        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
-        </div>
-    </div>
-    <div class="control-group">
-    <label class="control-label" for="">总结</label>
-        <div class="controls">
-        #springBind("report.describe")
-        <input id="${status.expression}" name="${status.expression}" type="text" class="input-xlarge" placeholder="" value="$!status.value">
-        #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="controls">
-        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
-        </div>
-    </div>
+    <label>标题</label>
+    #springBind("report.title")
+    <input id="${status.expression}" name="${status.expression}" type="text" placeholder="kafka vs rocketmq对比" value="$!status.value">
+    #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+    #springBind("report.id")
+    <input id="${status.expression}" name="${status.expression}" type="hidden" value="$!status.value">
+    #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+    <label>概括</label>
+    #springBind("report.summary")
+    <input class="span6" id="${status.expression}" name="${status.expression}" type="text" placeholder="kafka 和 rocketmq 的吞吐量对比" value="$!status.value">
+    #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+    <label>机器</label>
+    #foreach($computer in $computers)
+    <label id="computerIds" class="checkbox inline">
+    <input type="checkbox" id="computerIds[]" name="computerIds[]" value="$!computer.id">$!computer.describe
+    </label>
+    #end
+    <label>状态</label>
+    #springBind("report.status")
+    <input id="${status.expression}" name="${status.expression}" type="text" placeholder="" value="$!status.value">
+    #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+    <label>方案</label>
+    #springBind("report.content")
+    <textarea rows=8 class="span8" id="${status.expression}" name="${status.expression}" type="text" placeholder="自变量 c = [16, 32, 64, 128, 256] 不变量 message_size" value="$!status.value"></textarea>
+    #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+    <label>总结</label>
+    #springBind("report.describe")
+    <textarea rows=5 class="span6" id="${status.expression}" name="${status.expression}" type="text" placeholder="" value="$!status.value"></textarea>
+    #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
+    <button id="submit" type="text" class="btn btn-primary">保存</button>
 </fieldset>
 </form>
+#else
+<div class="hero-unit">
+    <h2><a href="/professor_x_web/computer/add">点击去添加宝贝吧!</a></h2>
+</div>
+#end
 </div>
 #parse("shared/footer.vm")

@@ -46,12 +46,17 @@ public class ReportController {
 
     @RequestMapping(value = "add/{report_id}", method = RequestMethod.GET)
     public String addAction(@PathVariable("report_id") Integer reportId, HttpServletRequest httpServletRequest, Model model) {
+        HttpSession httpSession = httpServletRequest.getSession();
+        Integer userId = (Integer) httpSession.getAttribute(Config.USER_ID);
         if (reportId != null && reportId > 0) {
             ReportWithBLOBs report = reportService.getReportById(reportId);
-            model.addAttribute("report", report);
-        } else {
-            model.addAttribute("report", new ReportWithBLOBs());
+            if(report != null) {
+                model.addAttribute("report", report);
+                return "/report/add";
+            }
         }
+        model.addAttribute("report", new ReportWithBLOBs());
+        model.addAttribute("computers", computerService.getComputerByUserId(userId));
         return "/report/add";
     }
 
