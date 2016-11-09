@@ -5,6 +5,7 @@ package com.github.professor_x_web.controller;
 
 import com.github.professor_x_web.constent.Config;
 import com.github.professor_x_web.model.ReportWithBLOBs;
+import com.github.professor_x_web.service.ComputerService;
 import com.github.professor_x_web.service.ReportService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -25,12 +26,17 @@ public class ReportController {
 
     @Autowired
     private ReportService reportService;
+    @Autowired
+    private ComputerService computerService;
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String listAction(HttpServletRequest httpServletRequest, Model model) {
         HttpSession httpSession = httpServletRequest.getSession();
         Integer userId = (Integer) httpSession.getAttribute(Config.USER_ID);
         List<ReportWithBLOBs> reports = reportService.getReportByUserId(userId);
+        for (ReportWithBLOBs report : reports) {
+            report.setComputerIds(computerService.getDescribesByIds(report.getComputerIds()));
+        }
         model.addAttribute("reports", reports);
         return "/report/list";
     }

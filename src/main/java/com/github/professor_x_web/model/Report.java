@@ -8,7 +8,7 @@ public class Report {
 
     private Integer userId;
 
-    private Integer computerId;
+    private String computerIds;
 
     private String title;
 
@@ -32,12 +32,12 @@ public class Report {
         this.userId = userId;
     }
 
-    public Integer getComputerId() {
-        return computerId;
+    public String getComputerIds() {
+        return computerIds;
     }
 
-    public void setComputerId(Integer computerId) {
-        this.computerId = computerId;
+    public void setComputerIds(String computerIds) {
+        this.computerIds = computerIds == null ? null : computerIds.trim();
     }
 
     public String getTitle() {

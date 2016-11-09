@@ -25,7 +25,7 @@
         <td>$i</td>
         <td>$!report.title</td>
         <td>$!report.summary</td>
-        <td>$!report.computerId</td>
+        <td>$!report.computerIds</td>
         <td>$!report.status</td>
         <td>$!DateUtil.formatForDate1($!report.createTime)</td>
     </tr>

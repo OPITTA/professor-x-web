@@ -15,7 +15,12 @@ import com.github.professor_x_web.model.Dist;
 import com.github.professor_x_web.model.Mem;
 import com.github.professor_x_web.model.NetworkCard;
 import com.github.professor_x_web.model.SolidDist;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +31,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ComputerService {
 
+    private static final Logger logger = LoggerFactory.getLogger(ComputerService.class);
     @Autowired
     private ComputerMapper computerMapper;
     @Autowired
@@ -219,4 +225,30 @@ public class ComputerService {
         }
         return null;
     }
+
+    /**
+     *
+     * @param ids [1,2,3]
+     * @return
+     */
+    public String getDescribesByIds(String ids) {
+        String describes = "";
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            List<Integer> list = objectMapper.readValue(ids, ArrayList.class);
+            if (list != null && !list.isEmpty()) {
+                for (Integer id : list) {
+                    Computer computer = computerMapper.selectByPrimaryKey(id);
+                    describes = describes + computer.getDescribe() + ",";
+                }
+            }
+        } catch (IOException ex) {
+            logger.error(ex.getMessage());
+        }
+        if (!describes.isEmpty()) {
+            return describes.substring(0, describes.length() - 1);
+        }
+        return describes;
+    }
+
 }

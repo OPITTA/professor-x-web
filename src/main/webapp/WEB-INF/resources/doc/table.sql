@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `network_card` (
 CREATE TABLE IF NOT EXISTS `report` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `user_id` int(11) NOT NULL DEFAULT -1,
-    `computer_id` int(11) NOT NULL DEFAULT -1,
+    `computer_ids` varchar(255) NOT NULL DEFAULT '[]',
     `title` varchar(255) NOT NULL,
     `describe` text NOT NULL,
     `content` text NOT NULL,

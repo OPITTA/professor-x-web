@@ -4,7 +4,7 @@
     <resultMap id="BaseResultMap" type="com.github.professor_x_web.model.Report" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="user_id" property="userId" jdbcType="INTEGER" />
-        <result column="computer_id" property="computerId" jdbcType="INTEGER" />
+        <result column="computer_ids" property="computerIds" jdbcType="VARCHAR" />
         <result column="title" property="title" jdbcType="VARCHAR" />
         <result column="status" property="status" jdbcType="INTEGER" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -15,7 +15,7 @@
         <result column="summary" property="summary" jdbcType="LONGVARCHAR" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id, user_id, computer_id, title, status, create_time
+        id, user_id, computer_ids, title, status, create_time
     </sql>
     <sql id="Blob_Column_List" >
         `describe`, content, summary
@@ -38,8 +38,8 @@
         <if test="userId != null" >
             and user_id = #{userId,jdbcType=INTEGER}
         </if>
-        <if test="computerId != null" >
-            and computer_id = #{computerId,jdbcType=INTEGER}
+        <if test="computerIds != null" >
+            and computer_ids = #{computerIds,jdbcType=VARCHAR}
         </if>
         <if test="title != null" >
             and title = #{title,jdbcType=VARCHAR}
@@ -70,8 +70,8 @@
         <if test="userId != null" >
             and user_id = #{userId,jdbcType=INTEGER}
         </if>
-        <if test="computerId != null" >
-            and computer_id = #{computerId,jdbcType=INTEGER}
+        <if test="computerIds != null" >
+            and computer_ids = #{computerIds,jdbcType=VARCHAR}
         </if>
         <if test="title != null" >
             and title = #{title,jdbcType=VARCHAR}
@@ -96,17 +96,17 @@
         delete from report
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.github.professor_x_web.model.ReportWithBLOBs" useGeneratedKeys="true" keyProperty="id">
-        insert into report (id, user_id, computer_id, 
+    <insert id="insert" parameterType="com.github.professor_x_web.model.ReportWithBLOBs" >
+        insert into report (id, user_id, computer_ids, 
         title, status, create_time, 
         `describe`, content, summary
         )
-        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{computerId,jdbcType=INTEGER}, 
+        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{computerIds,jdbcType=VARCHAR}, 
         #{title,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
         #{describe,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}, #{summary,jdbcType=LONGVARCHAR}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.github.professor_x_web.model.ReportWithBLOBs" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.github.professor_x_web.model.ReportWithBLOBs" >
         insert into report
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -115,8 +115,8 @@
             <if test="userId != null" >
                 user_id,
             </if>
-            <if test="computerId != null" >
-                computer_id,
+            <if test="computerIds != null" >
+                computer_ids,
             </if>
             <if test="title != null" >
                 title,
@@ -144,8 +144,8 @@
             <if test="userId != null" >
                 #{userId,jdbcType=INTEGER},
             </if>
-            <if test="computerId != null" >
-                #{computerId,jdbcType=INTEGER},
+            <if test="computerIds != null" >
+                #{computerIds,jdbcType=VARCHAR},
             </if>
             <if test="title != null" >
                 #{title,jdbcType=VARCHAR},
@@ -173,8 +173,8 @@
             <if test="userId != null" >
                 user_id = #{userId,jdbcType=INTEGER},
             </if>
-            <if test="computerId != null" >
-                computer_id = #{computerId,jdbcType=INTEGER},
+            <if test="computerIds != null" >
+                computer_ids = #{computerIds,jdbcType=VARCHAR},
             </if>
             <if test="title != null" >
                 title = #{title,jdbcType=VARCHAR},
@@ -200,7 +200,7 @@
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.github.professor_x_web.model.ReportWithBLOBs" >
         update report
         set user_id = #{userId,jdbcType=INTEGER},
-        computer_id = #{computerId,jdbcType=INTEGER},
+        computer_ids = #{computerIds,jdbcType=VARCHAR},
         title = #{title,jdbcType=VARCHAR},
         status = #{status,jdbcType=INTEGER},
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -212,7 +212,7 @@
     <update id="updateByPrimaryKey" parameterType="com.github.professor_x_web.model.Report" >
         update report
         set user_id = #{userId,jdbcType=INTEGER},
-        computer_id = #{computerId,jdbcType=INTEGER},
+        computer_ids = #{computerIds,jdbcType=VARCHAR},
         title = #{title,jdbcType=VARCHAR},
         status = #{status,jdbcType=INTEGER},
         create_time = #{createTime,jdbcType=TIMESTAMP}
