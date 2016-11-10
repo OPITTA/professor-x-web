@@ -121,4 +121,18 @@ public class ReportController {
         return "redirect:/report/list";
     }
 
+    @RequestMapping(value = "chart", method = RequestMethod.GET)
+    public String chartAction(HttpServletRequest httpServletRequest, Model model) {
+        HttpSession httpSession = httpServletRequest.getSession();
+        Integer userId = (Integer) httpSession.getAttribute(Config.USER_ID);
+        List<ReportWithBLOBs> doingReports = reportService.getReportByUserIdAndStatus(userId, ReportStatus.DOING);
+        List<ReportWithBLOBs> doneReports = reportService.getReportByUserIdAndStatus(userId, ReportStatus.DONE);
+        List<ReportWithBLOBs> sharedReports = reportService.getReportByUserIdAndStatus(userId, ReportStatus.SHARED);
+        List<ReportWithBLOBs> reports = new ArrayList<ReportWithBLOBs>();
+        reports.addAll(doingReports);
+        reports.addAll(doneReports);
+        reports.addAll(sharedReports);
+        model.addAttribute("reports", reports);
+        return "/report/chart";
+    }
 }

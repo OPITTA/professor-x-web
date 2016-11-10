@@ -46,4 +46,11 @@ public class ReportService {
     public ReportWithBLOBs getReportById(int id) {
         return reportMapper.selectByPrimaryKey(id);
     }
+
+    public List<ReportWithBLOBs> getReportByUserIdAndStatus(int userId, ReportStatus reportStatus) {
+        ReportWithBLOBs report = new ReportWithBLOBs();
+        report.setUserId(userId);
+        report.setStatus(reportStatus.getId());
+        return reportMapper.selectAllSelective(report);
+    }
 }

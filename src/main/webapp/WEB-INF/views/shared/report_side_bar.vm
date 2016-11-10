@@ -23,6 +23,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">可选操作</li>
               <li #if($side_bar=="report") class="active" #end><a href="/professor_x_web/report/list">报告列表</a></li>
+              <li #if($side_bar=="chart") class="active" #end><a href="/professor_x_web/report/chart">图表</a></li>
             </ul>
           </div>
         </div>
