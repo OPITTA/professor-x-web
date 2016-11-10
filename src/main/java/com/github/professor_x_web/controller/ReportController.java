@@ -5,6 +5,7 @@ package com.github.professor_x_web.controller;
 
 import com.github.professor_x_web.constent.ReportStatus;
 import com.github.professor_x_web.constent.Config;
+import com.github.professor_x_web.constent.ResultStatus;
 import com.github.professor_x_web.model.Computer;
 import com.github.professor_x_web.model.Data;
 import com.github.professor_x_web.model.ReportWithBLOBs;
@@ -12,7 +13,9 @@ import com.github.professor_x_web.service.ComputerService;
 import com.github.professor_x_web.service.ReportService;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -27,6 +30,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -139,5 +143,39 @@ public class ReportController {
             model.addAttribute("datas", datas);
         }
         return "/report/chart";
+    }
+
+    @RequestMapping(value = "do_add_data", method = RequestMethod.PUT)
+    public @ResponseBody
+    Map<String, String> doAddDataAction(HttpServletRequest httpServletRequest) {
+        HttpSession httpSession = httpServletRequest.getSession();
+        Integer userId = (Integer) httpSession.getAttribute(Config.USER_ID);
+        String title = httpServletRequest.getParameter("title");
+        String data = httpServletRequest.getParameter("data");
+        Map<String, String> result = new HashMap<String, String>();
+        if (userId == null || userId < 1) {
+            result.put("result", ResultStatus.NO.getName());
+            return result;
+        }
+        if (title == null || title.isEmpty()) {
+            result.put("result", ResultStatus.NO.getName());
+            return result;
+        }
+        if (data == null || data.isEmpty()) {
+            result.put("result", ResultStatus.NO.getName());
+            return result;
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        Data d;
+        try {
+            d = objectMapper.readValue(data, Data.class);
+        } catch (IOException ex) {
+            logger.error(ex.getMessage());
+            result.put("result", ResultStatus.NO.getName());
+            return result;
+        }
+        ResultStatus rs = reportService.addDataForReport(userId, title, d);
+        result.put(data, rs.getName());
+        return result;
     }
 }

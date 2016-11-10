@@ -4,6 +4,7 @@
 package com.github.professor_x_web.service;
 
 import com.github.professor_x_web.constent.ReportStatus;
+import com.github.professor_x_web.constent.ResultStatus;
 import com.github.professor_x_web.mapper.DataMapper;
 import com.github.professor_x_web.mapper.ReportMapper;
 import com.github.professor_x_web.model.Data;
@@ -28,12 +29,16 @@ public class ReportService {
         if (report == null) {
             return false;
         }
-        if (report.getId() != null && report.getId() > 0) {
-            ReportWithBLOBs realReport = reportMapper.selectByPrimaryKey(report.getId());
-            if (realReport != null && realReport.getUserId() == userId) {
-                reportMapper.updateByPrimaryKeySelective(report);
-                return true;
-            }
+        if (report.getTitle() == null || report.getTitle().isEmpty()) {
+            return false;
+        }
+        ReportWithBLOBs realReport = new ReportWithBLOBs();
+        realReport.setUserId(userId);
+        realReport.setTitle(report.getTitle());
+        realReport = reportMapper.selectByPrimaryKey(report.getId());
+        if (realReport != null) {
+            reportMapper.updateByPrimaryKeySelective(report);
+            return true;
         }
         report.setId(null);
         report.setUserId(userId);
@@ -75,5 +80,24 @@ public class ReportService {
             data.setEndTime(endTime + " 23:59:59");
         }
         return dataMapper.selectAllSelective(data);
+    }
+
+    public ResultStatus addDataForReport(Integer userId, String title, Data data) {
+        ReportWithBLOBs report = new ReportWithBLOBs();
+        report.setUserId(userId);
+        report.setTitle(title);
+        report = reportMapper.selectSelective(report);
+        if (report == null) {
+            return ResultStatus.NO;
+        }
+        if (report.getStatus() == ReportStatus.NEW.getId()) {
+            report.setStatus(ReportStatus.DOING.getId());
+        }
+        data.setReportId(report.getId());
+        if (dataMapper.insertSelective(data) > 0) {
+            reportMapper.updateByPrimaryKeySelective(report);
+            return ResultStatus.YES;
+        }
+        return ResultStatus.NO;
     }
 }
