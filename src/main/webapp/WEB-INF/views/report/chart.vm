@@ -5,7 +5,7 @@
 #parse("shared/report_side_bar.vm")
 #if($reports && $reports.size()>0)
 <div class="row-fluid">
-  <form class="form-inline well well-small" action="$!submit_form_url" method="GET" id="find_form">
+  <form class="form-inline well well-small" action="" method="GET" id="find_form">
     <div class="control-group">
       <div class="controls">
         <div class="controls controls-row">
