@@ -29,12 +29,12 @@
     </head>
     <body>
         <header style="background-color: #000;color:#fff; width:100%; text-align:center;padding: 20px; border-bottom: solid 1px #eee;position: fixed;bottom: top;left: 0;">
-            <h1>系统登陆</h1>
+            <h1>X教授-UI</h1>
         </header>
         <div class="container-fluid">
             <div class="modal login-form" style="top: 25%">
                 <div class="modal-header" style="text-align: center;">
-                    <h3>系统登陆</h3>
+                    <h3>登陆</h3>
                     <h6 style="margin-left: 10px;"></h6>
                 </div>
                 <form id="login-form" action="/professor_x_web/do_login" method="POST" class="login-form" style="padding: 10px; margin-bottom: 0px;">
@@ -73,7 +73,7 @@
             </div>
         </div>
         <footer style="width:100%; text-align:center;border-top: solid 1px #eee;padding-top: 10px;margin-top: 20px;position: fixed;bottom: 0;left: 0;">
-            <p>&copy; 百融 2015 - 2016，保留所有权利</p>
+            <p>&copy; IT-ProfessorX 2015 - 2016，保留所有权利</p>
         </footer>
     </body>
     <script type="text/javascript">
