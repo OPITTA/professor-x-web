@@ -10,7 +10,7 @@
       <div class="controls">
         <div class="controls controls-row">
             <select id="report_id" name="report_id" class="input-medium">
-                <option>请选择</option>
+                <option value="-1">请选择</option>
                 #foreach ($report in $!reports)
                 <option value=$report.id>$!report.title</option>
                 #end
