@@ -145,7 +145,7 @@ public class ReportController {
         return "/report/chart";
     }
 
-    @RequestMapping(value = "do_add_data", method = RequestMethod.PUT)
+    @RequestMapping(value = "do_add_data", method = RequestMethod.POST)
     public @ResponseBody
     Map<String, String> doAddDataAction(HttpServletRequest httpServletRequest) {
         HttpSession httpSession = httpServletRequest.getSession();

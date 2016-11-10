@@ -30,9 +30,9 @@
           <tr>
               <th>ID</th>
               <th>并发</th>
-              <th>TPS</th>
-              <th>响应时间(ave/min/max)</th>
-              <th>错误率</th>
+              <th>TPS 个/秒</th>
+              <th>响应时间(ave/min/max 毫秒)</th>
+              <th>错误率 %</th>
               <th>创建时间</th>
           </tr>
         </thead>
@@ -76,7 +76,7 @@
                        }
                    }
              });
-            var duration = 1;
+            var duration = 0;
             #if ($!duration)
                 duration = $!duration;
             #end
