@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * 用户注册信息时，进行提示信息(帐号唯一检测，邮箱注册信息检测)
  *
- * @author xin.cao@100credit.com
+ * @author 510655387@qq.com
  */
 @Controller
 @RequestMapping(value = "/user/ajax/")

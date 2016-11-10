@@ -5,7 +5,7 @@ import org.apache.commons.lang.RandomStringUtils;
 /**
  * 字符串
  *
- * @author xin.cao@100credit.com
+ * @author 510655387@qq.com
  */
 public class StringUtil {
 

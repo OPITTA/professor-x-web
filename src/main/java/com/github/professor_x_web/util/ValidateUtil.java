@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * 对字符串进行校验
  *
- * @author xin.cao@100credit.com
+ * @author 510655387@qq.com
  */
 public class ValidateUtil {
 

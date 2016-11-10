@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
- * @author xin.cao@100credit.com
+ * @author 510655387@qq.com
  */
 @Controller
 @RequestMapping("/")

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * 用户管理
  *
- * @author xin.cao@100credit.com
+ * @author 510655387@qq.com
  */
 @Controller
 @RequestMapping(value = "/manager/user_center/")

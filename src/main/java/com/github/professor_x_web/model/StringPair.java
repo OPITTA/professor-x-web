@@ -2,7 +2,7 @@ package com.github.professor_x_web.model;
 
 /**
  *
- * @author xin.cao@100credit.com
+ * @author 510655387@qq.com
  */
 public class StringPair {
 

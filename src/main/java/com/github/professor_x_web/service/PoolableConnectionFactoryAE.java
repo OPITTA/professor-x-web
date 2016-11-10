@@ -9,7 +9,7 @@ import org.apache.commons.pool.ObjectPool;
 
 /**
  *
- * @author xin.cao@100credit.com
+ * @author 510655387@qq.com
  */
 public class PoolableConnectionFactoryAE extends PoolableConnectionFactory {
 
