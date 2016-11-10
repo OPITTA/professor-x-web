@@ -620,13 +620,13 @@ jQuery.extend({
 			if ( isObj ) {
 				for ( name in object ) {
 					if ( callback.apply( object[ name ], args ) === false ) {
-						githubeak;
+						break;
 					}
 				}
 			} else {
 				for ( ; i < length; ) {
 					if ( callback.apply( object[ i++ ], args ) === false ) {
-						githubeak;
+						break;
 					}
 				}
 			}
@@ -636,13 +636,13 @@ jQuery.extend({
 			if ( isObj ) {
 				for ( name in object ) {
 					if ( callback.call( object[ name ], name, object[ name ] ) === false ) {
-						githubeak;
+						break;
 					}
 				}
 			} else {
 				for ( ; i < length; ) {
 					if ( callback.call( object[ i ], i, object[ i++ ] ) === false ) {
-						githubeak;
+						break;
 					}
 				}
 			}
@@ -893,7 +893,7 @@ if ( jQuery.githubowser.webkit ) {
 	jQuery.githubowser.safari = true;
 }
 
-// IE doesn't match non-githubeaking spaces with \s
+// IE doesn't match non-breaking spaces with \s
 if ( rnotwhite.test( "\xA0" ) ) {
 	trimLeft = /^[\s\xA0]+/;
 	trimRight = /[\s\xA0]+$/;
@@ -1031,7 +1031,7 @@ jQuery.Callbacks = function( flags ) {
 			for ( ; list && firingIndex < firingLength; firingIndex++ ) {
 				if ( list[ firingIndex ].apply( context, args ) === false && flags.stopOnFalse ) {
 					memory = true; // Mark as halted
-					githubeak;
+					break;
 				}
 			}
 			firing = false;
@@ -1092,7 +1092,7 @@ jQuery.Callbacks = function( flags ) {
 								// If we have some unicity property then
 								// we only need to do this once
 								if ( flags.unique ) {
-									githubeak;
+									break;
 								}
 							}
 						}
@@ -3894,7 +3894,7 @@ var Sizzle = function( selector, context, results, seed ) {
 
 			if ( m[2] ) {
 				extra = m[3];
-				githubeak;
+				break;
 			}
 		}
 	} while ( m );
@@ -4054,7 +4054,7 @@ Sizzle.find = function( expr, context, isXML ) {
 
 				if ( set != null ) {
 					expr = expr.replace( Expr.match[ type ], "" );
-					githubeak;
+					break;
 				}
 			}
 		}
@@ -4140,7 +4140,7 @@ Sizzle.filter = function( expr, set, inplace, not ) {
 						return [];
 					}
 
-					githubeak;
+					break;
 				}
 			}
 		}
@@ -4151,7 +4151,7 @@ Sizzle.filter = function( expr, set, inplace, not ) {
 				Sizzle.error( expr );
 
 			} else {
-				githubeak;
+				break;
 			}
 		}
 
@@ -5163,7 +5163,7 @@ function dirNodeCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 			while ( elem ) {
 				if ( elem[ expando ] === doneName ) {
 					match = checkSet[elem.sizset];
-					githubeak;
+					break;
 				}
 
 				if ( elem.nodeType === 1 && !isXML ){
@@ -5173,7 +5173,7 @@ function dirNodeCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 
 				if ( elem.nodeName.toLowerCase() === cur ) {
 					match = elem;
-					githubeak;
+					break;
 				}
 
 				elem = elem[dir];
@@ -5196,7 +5196,7 @@ function dirCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 			while ( elem ) {
 				if ( elem[ expando ] === doneName ) {
 					match = checkSet[elem.sizset];
-					githubeak;
+					break;
 				}
 
 				if ( elem.nodeType === 1 ) {
@@ -5208,12 +5208,12 @@ function dirCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 					if ( typeof cur !== "string" ) {
 						if ( elem === cur ) {
 							match = true;
-							githubeak;
+							break;
 						}
 
 					} else if ( Sizzle.filter( cur, [elem] ).length > 0 ) {
 						match = elem;
-						githubeak;
+						break;
 					}
 				}
 
@@ -5330,7 +5330,7 @@ jQuery.fn.extend({
 					for ( r = 0; r < length; r++ ) {
 						if ( ret[r] === ret[n] ) {
 							ret.splice(n--, 1);
-							githubeak;
+							break;
 						}
 					}
 				}
@@ -5403,12 +5403,12 @@ jQuery.fn.extend({
 			while ( cur ) {
 				if ( pos ? pos.index(cur) > -1 : jQuery.find.matchesSelector(cur, selectors) ) {
 					ret.push( cur );
-					githubeak;
+					break;
 
 				} else {
 					cur = cur.parentNode;
 					if ( !cur || !cur.ownerDocument || cur === context || cur.nodeType === 11 ) {
-						githubeak;
+						break;
 					}
 				}
 			}
@@ -5553,7 +5553,7 @@ jQuery.extend({
 
 		for ( ; cur; cur = cur[dir] ) {
 			if ( cur.nodeType === 1 && ++num === result ) {
-				githubeak;
+				break;
 			}
 		}
 
@@ -7693,7 +7693,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 		for ( type in contents ) {
 			if ( contents[ type ] && contents[ type ].test( ct ) ) {
 				dataTypes.unshift( type );
-				githubeak;
+				break;
 			}
 		}
 	}
@@ -7706,7 +7706,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 		for ( type in responses ) {
 			if ( !dataTypes[ 0 ] || s.converters[ type + " " + dataTypes[0] ] ) {
 				finalDataType = type;
-				githubeak;
+				break;
 			}
 			if ( !firstDataType ) {
 				firstDataType = type;
@@ -7793,7 +7793,7 @@ function ajaxConvert( s, response ) {
 							} else if ( conv2 === true ) {
 								conv = conv1;
 							}
-							githubeak;
+							break;
 						}
 					}
 				}
@@ -8957,7 +8957,7 @@ if ( "getBoundingClientRect" in document.documentElement ) {
 
 		while ( (elem = elem.parentNode) && elem !== body && elem !== docElem ) {
 			if ( jQuery.support.fixedPosition && prevComputedStyle.position === "fixed" ) {
-				githubeak;
+				break;
 			}
 
 			computedStyle = defaultView ? defaultView.getComputedStyle(elem, null) : elem.currentStyle;
