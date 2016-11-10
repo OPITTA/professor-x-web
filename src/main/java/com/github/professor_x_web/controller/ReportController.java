@@ -6,6 +6,7 @@ package com.github.professor_x_web.controller;
 import com.github.professor_x_web.constent.ReportStatus;
 import com.github.professor_x_web.constent.Config;
 import com.github.professor_x_web.model.Computer;
+import com.github.professor_x_web.model.Data;
 import com.github.professor_x_web.model.ReportWithBLOBs;
 import com.github.professor_x_web.service.ComputerService;
 import com.github.professor_x_web.service.ReportService;
@@ -122,7 +123,7 @@ public class ReportController {
     }
 
     @RequestMapping(value = "chart", method = RequestMethod.GET)
-    public String chartAction(HttpServletRequest httpServletRequest, Model model) {
+    public String chartAction(HttpServletRequest httpServletRequest, Model model, @RequestParam(value = "report_id", required = false) Integer reportId, @RequestParam(value = "start_time", required = false) String startTime, @RequestParam(value = "end_time", required = false) String endTime) {
         HttpSession httpSession = httpServletRequest.getSession();
         Integer userId = (Integer) httpSession.getAttribute(Config.USER_ID);
         List<ReportWithBLOBs> doingReports = reportService.getReportByUserIdAndStatus(userId, ReportStatus.DOING);
@@ -133,6 +134,10 @@ public class ReportController {
         reports.addAll(doneReports);
         reports.addAll(sharedReports);
         model.addAttribute("reports", reports);
+        if (reportId != null && reportId > 0) {
+            List<Data> datas = reportService.getDatabyUserIdAndReportId(userId, reportId, startTime, endTime);
+            model.addAttribute("datas", datas);
+        }
         return "/report/chart";
     }
 }

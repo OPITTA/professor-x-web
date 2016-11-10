@@ -22,6 +22,10 @@ public class Data {
 
     private Date createTime;
 
+    private String startTime;
+
+    private String endTime;
+
     public Integer getId() {
         return id;
     }
@@ -93,4 +97,21 @@ public class Data {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
 }

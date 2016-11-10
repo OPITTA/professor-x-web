@@ -80,6 +80,12 @@
         <if test="createTime != null" >
             and create_time = #{createTime,jdbcType=TIMESTAMP}
         </if>
+        <if test="startTime != null" >
+            and create_time &gt;= #{startTime,jdbcType=VARCHAR}
+        </if>
+        <if test="endTime != null" >
+            and create_time &lt;= #{endTime,jdbcType=VARCHAR}
+        </if>
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from data

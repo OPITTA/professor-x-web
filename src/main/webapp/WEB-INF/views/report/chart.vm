@@ -23,10 +23,44 @@
     </div>
   </form>
 </div>
+    #if ($datas && $datas.size() > 0)
+    <div class="row-fluid">
+        <table class="table">
+        <thead>
+          <tr>
+              <th>ID</th>
+              <th>并发</th>
+              <th>TPS</th>
+              <th>响应时间(ave/min/max)</th>
+              <th>错误率</th>
+              <th>创建时间</th>
+          </tr>
+        </thead>
+        <tbody>
+            #foreach ($data in $datas)
+            <tr>
+              <td>ID</th>
+              <td>$!data.concurrency</th>
+              <td>$!data.tps</th>
+              <td>$!data.averageRt/$!data.minRt/$!data.maxRt</th>
+              <td>$!data.errorRate</th>
+              <td>$!DateUtil.formatForDate1($!data.createTime)</td>
+            </tr>
+            #end
+        </tbody>
+        </table>
+    </div>
+    #else
+    <div class="row-fluid">
+        <div class="hero-unit">
+            <h2>没有和选择条件相匹配的结果</h2>
+        </div>
+    </div>
+    #end
 #else
 <div class="row-fluid">
     <div class="hero-unit">
-        <h2>没有和选择条件相匹配的结果!</h2>
+        <h2>没有可以展示的报告</h2>
     </div>
 </div>
 #end
