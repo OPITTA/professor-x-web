@@ -27,7 +27,17 @@
         <td>$!report.title</td>
         <td>$!report.summary</td>
         <td>$!report.computerIds</td>
-        <td>$!report.status</td>
+        <td>
+        #if($NEW.id==$!report.status)
+        <span class="badge badge-success">$NEW.name</span>
+        #elseif($DOING.id == $!report.status)
+        <span class="badge badge-important">$DOING.name</span>
+        #elseif($DONE.id == $!report.status)
+        <span class="badge badge-info">$DONE.name</span>
+        #elseif($SHARED.id == $!report.status)
+        <span class="badge badge-warning">$SHARED.name</span>
+        #end
+        </td>
         <td>$!DateUtil.formatForDate1($!report.createTime)</td>
         <td><a href="/professor_x_web/report/add/$report.id">详情</a></td>
     </tr>

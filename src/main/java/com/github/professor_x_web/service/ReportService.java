@@ -3,6 +3,7 @@
  */
 package com.github.professor_x_web.service;
 
+import com.github.professor_x_web.constent.ReportStatus;
 import com.github.professor_x_web.mapper.ReportMapper;
 import com.github.professor_x_web.model.ReportWithBLOBs;
 import java.util.List;
@@ -32,6 +33,7 @@ public class ReportService {
         }
         report.setId(null);
         report.setUserId(userId);
+        report.setStatus(ReportStatus.NEW.getId());
         return reportMapper.insertSelective(report) > 0;
     }
 
