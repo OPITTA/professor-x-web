@@ -12,11 +12,11 @@
             <select id="report_id" name="report_id" class="input-medium">
                 <option value="-1">请选择</option>
                 #foreach ($report in $!reports)
-                <option value=$report.id>$!report.title</option>
+                <option value=$report.id #if($report.id==$!reportId)selected="selected"#end>$!report.title</option>
                 #end
             </select>
-            <input type="text" id="start_time" name="start_time" class="input-small" value="" placeholder="开始时间" />
-            <input type="text" id="end_time" name="end_time" class="input-small" value=""  placeholder="结束时间">
+            <input type="text" id="start_time" name="start_time" class="input-small" value="$!startTime" placeholder="开始时间" />
+            <input type="text" id="end_time" name="end_time" class="input-small" value="$!endTime"  placeholder="结束时间">
             <button type="submit" class="btn btn-primary">查询</button>
         </div>
       </div>

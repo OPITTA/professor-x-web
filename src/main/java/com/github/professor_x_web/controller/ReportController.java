@@ -139,6 +139,9 @@ public class ReportController {
         reports.addAll(sharedReports);
         model.addAttribute("reports", reports);
         if (reportId != null && reportId > 0) {
+            model.addAttribute("startTime", startTime);
+            model.addAttribute("endTime", endTime);
+            model.addAttribute("reportId", reportId);
             List<Data> datas = reportService.getDatabyUserIdAndReportId(userId, reportId, startTime, endTime);
             model.addAttribute("datas", datas);
         }
