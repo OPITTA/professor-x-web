@@ -32,6 +32,8 @@ public class Data {
 
     private String endTime;
 
+    private String topic;
+
     public Integer getId() {
         return id;
     }
@@ -142,6 +144,14 @@ public class Data {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 
 }
