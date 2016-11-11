@@ -4,16 +4,20 @@
     <resultMap id="BaseResultMap" type="com.github.professor_x_web.model.Data" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="report_id" property="reportId" jdbcType="INTEGER" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="concurrency" property="concurrency" jdbcType="INTEGER" />
+        <result column="sample_size" property="sampleSize" jdbcType="INTEGER" />
+        <result column="message_size" property="messageSize" jdbcType="INTEGER" />
         <result column="average_rt" property="averageRt" jdbcType="INTEGER" />
         <result column="min_rt" property="minRt" jdbcType="INTEGER" />
         <result column="max_rt" property="maxRt" jdbcType="INTEGER" />
         <result column="tps" property="tps" jdbcType="INTEGER" />
-        <result column="concurrency" property="concurrency" jdbcType="INTEGER" />
         <result column="error_rate" property="errorRate" jdbcType="INTEGER" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id, report_id, average_rt, min_rt, max_rt, tps, concurrency, error_rate, create_time
+        id, report_id, title, concurrency, sample_size, message_size, average_rt, min_rt, 
+        max_rt, tps, error_rate, create_time
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select 
@@ -29,6 +33,18 @@
         <if test="reportId != null" >
             and report_id = #{reportId,jdbcType=INTEGER}
         </if>
+        <if test="title != null" >
+            and title = #{title,jdbcType=VARCHAR}
+        </if>
+        <if test="concurrency != null" >
+            and concurrency = #{concurrency,jdbcType=INTEGER}
+        </if>
+        <if test="sampleSize != null" >
+            and sample_size = #{sampleSize,jdbcType=INTEGER}
+        </if>
+        <if test="messageSize != null" >
+            and message_size = #{messageSize,jdbcType=INTEGER}
+        </if>
         <if test="averageRt != null" >
             and average_rt = #{averageRt,jdbcType=INTEGER}
         </if>
@@ -40,9 +56,6 @@
         </if>
         <if test="tps != null" >
             and tps = #{tps,jdbcType=INTEGER}
-        </if>
-        <if test="concurrency != null" >
-            and concurrency = #{concurrency,jdbcType=INTEGER}
         </if>
         <if test="errorRate != null" >
             and error_rate = #{errorRate,jdbcType=INTEGER}
@@ -59,6 +72,18 @@
         <if test="reportId != null" >
             and report_id = #{reportId,jdbcType=INTEGER}
         </if>
+        <if test="title != null" >
+            and title = #{title,jdbcType=VARCHAR}
+        </if>
+        <if test="concurrency != null" >
+            and concurrency = #{concurrency,jdbcType=INTEGER}
+        </if>
+        <if test="sampleSize != null" >
+            and sample_size = #{sampleSize,jdbcType=INTEGER}
+        </if>
+        <if test="messageSize != null" >
+            and message_size = #{messageSize,jdbcType=INTEGER}
+        </if>
         <if test="averageRt != null" >
             and average_rt = #{averageRt,jdbcType=INTEGER}
         </if>
@@ -70,9 +95,6 @@
         </if>
         <if test="tps != null" >
             and tps = #{tps,jdbcType=INTEGER}
-        </if>
-        <if test="concurrency != null" >
-            and concurrency = #{concurrency,jdbcType=INTEGER}
         </if>
         <if test="errorRate != null" >
             and error_rate = #{errorRate,jdbcType=INTEGER}
@@ -92,13 +114,15 @@
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.github.professor_x_web.model.Data" useGeneratedKeys="true" keyProperty="id">
-        insert into data (id, report_id, average_rt, 
-        min_rt, max_rt, tps, 
-        concurrency, error_rate, create_time
+        insert into data (id, report_id, title, 
+        concurrency, sample_size, message_size, 
+        average_rt, min_rt, max_rt, 
+        tps, error_rate, create_time
         )
-        values (#{id,jdbcType=INTEGER}, #{reportId,jdbcType=INTEGER}, #{averageRt,jdbcType=INTEGER}, 
-        #{minRt,jdbcType=INTEGER}, #{maxRt,jdbcType=INTEGER}, #{tps,jdbcType=INTEGER}, 
-        #{concurrency,jdbcType=INTEGER}, #{errorRate,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+        values (#{id,jdbcType=INTEGER}, #{reportId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+        #{concurrency,jdbcType=INTEGER}, #{sampleSize,jdbcType=INTEGER}, #{messageSize,jdbcType=INTEGER}, 
+        #{averageRt,jdbcType=INTEGER}, #{minRt,jdbcType=INTEGER}, #{maxRt,jdbcType=INTEGER}, 
+        #{tps,jdbcType=INTEGER}, #{errorRate,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
         )
     </insert>
     <insert id="insertSelective" parameterType="com.github.professor_x_web.model.Data" useGeneratedKeys="true" keyProperty="id">
@@ -109,6 +133,18 @@
             </if>
             <if test="reportId != null" >
                 report_id,
+            </if>
+            <if test="title != null" >
+                title,
+            </if>
+            <if test="concurrency != null" >
+                concurrency,
+            </if>
+            <if test="sampleSize != null" >
+                sample_size,
+            </if>
+            <if test="messageSize != null" >
+                message_size,
             </if>
             <if test="averageRt != null" >
                 average_rt,
@@ -121,9 +157,6 @@
             </if>
             <if test="tps != null" >
                 tps,
-            </if>
-            <if test="concurrency != null" >
-                concurrency,
             </if>
             <if test="errorRate != null" >
                 error_rate,
@@ -139,6 +172,18 @@
             <if test="reportId != null" >
                 #{reportId,jdbcType=INTEGER},
             </if>
+            <if test="title != null" >
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="concurrency != null" >
+                #{concurrency,jdbcType=INTEGER},
+            </if>
+            <if test="sampleSize != null" >
+                #{sampleSize,jdbcType=INTEGER},
+            </if>
+            <if test="messageSize != null" >
+                #{messageSize,jdbcType=INTEGER},
+            </if>
             <if test="averageRt != null" >
                 #{averageRt,jdbcType=INTEGER},
             </if>
@@ -150,9 +195,6 @@
             </if>
             <if test="tps != null" >
                 #{tps,jdbcType=INTEGER},
-            </if>
-            <if test="concurrency != null" >
-                #{concurrency,jdbcType=INTEGER},
             </if>
             <if test="errorRate != null" >
                 #{errorRate,jdbcType=INTEGER},
@@ -168,6 +210,18 @@
             <if test="reportId != null" >
                 report_id = #{reportId,jdbcType=INTEGER},
             </if>
+            <if test="title != null" >
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="concurrency != null" >
+                concurrency = #{concurrency,jdbcType=INTEGER},
+            </if>
+            <if test="sampleSize != null" >
+                sample_size = #{sampleSize,jdbcType=INTEGER},
+            </if>
+            <if test="messageSize != null" >
+                message_size = #{messageSize,jdbcType=INTEGER},
+            </if>
             <if test="averageRt != null" >
                 average_rt = #{averageRt,jdbcType=INTEGER},
             </if>
@@ -179,9 +233,6 @@
             </if>
             <if test="tps != null" >
                 tps = #{tps,jdbcType=INTEGER},
-            </if>
-            <if test="concurrency != null" >
-                concurrency = #{concurrency,jdbcType=INTEGER},
             </if>
             <if test="errorRate != null" >
                 error_rate = #{errorRate,jdbcType=INTEGER},
@@ -195,11 +246,14 @@
     <update id="updateByPrimaryKey" parameterType="com.github.professor_x_web.model.Data" >
         update data
         set report_id = #{reportId,jdbcType=INTEGER},
+        title = #{title,jdbcType=VARCHAR},
+        concurrency = #{concurrency,jdbcType=INTEGER},
+        sample_size = #{sampleSize,jdbcType=INTEGER},
+        message_size = #{messageSize,jdbcType=INTEGER},
         average_rt = #{averageRt,jdbcType=INTEGER},
         min_rt = #{minRt,jdbcType=INTEGER},
         max_rt = #{maxRt,jdbcType=INTEGER},
         tps = #{tps,jdbcType=INTEGER},
-        concurrency = #{concurrency,jdbcType=INTEGER},
         error_rate = #{errorRate,jdbcType=INTEGER},
         create_time = #{createTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=INTEGER}

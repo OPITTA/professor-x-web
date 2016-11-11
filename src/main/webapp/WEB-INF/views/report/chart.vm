@@ -29,20 +29,30 @@
         <thead>
           <tr>
               <th>ID</th>
-              <th>并发</th>
-              <th>TPS 个/秒</th>
-              <th>响应时间(ave/min/max 毫秒)</th>
-              <th>错误率 %</th>
-              <th>创建时间</th>
+              <th>标题</th>
+              <th>样本(g)</th>
+              <th>消息(k|m|g)</th>
+              <th>并发(g)</th>
+              <th>TPS(g/s)</th>
+              <th>aveRT(ms)</th>
+              <th>minRT(ms)</th>
+              <th>max(ms)</th>
+              <th>错误率(%)</th>
+              <th>时间</th>
           </tr>
         </thead>
         <tbody>
             #foreach ($data in $datas)
             <tr>
               <td>ID</th>
+              <td>$!data.title</th>
+              <td>$!data.sampleSize</th>
+              <td>#if($!data.messageSize == -1)无#else$!data.messageSize#end</th>
               <td>$!data.concurrency</th>
               <td>$!data.tps</th>
-              <td>$!data.averageRt/$!data.minRt/$!data.maxRt</th>
+              <td>$!data.averageRt</th>
+              <td>$!data.minRt</th>
+              <td>$!data.maxRt</th>
               <td>$!data.errorRate</th>
               <td>$!DateUtil.formatForDate1($!data.createTime)</td>
             </tr>

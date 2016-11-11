@@ -88,11 +88,14 @@ CREATE TABLE IF NOT EXISTS `report` (
 CREATE TABLE IF NOT EXISTS `data` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `report_id` int(11) NOT NULL DEFAULT -1,
+    `title` varchar(255) NOT NULL,
+    `concurrency` int(11) NOT NULL DEFAULT -1,
+    `sample_size` int(11) NOT NULL DEFAULT -1,
+    `message_size` int(11) NOT NULL DEFAULT -1,
     `average_rt` int(11) NOT NULL DEFAULT -1,
     `min_rt` int(11) NOT NULL DEFAULT -1,
     `max_rt` int(11) NOT NULL DEFAULT -1,
     `tps` int(11) NOT NULL DEFAULT -1,
-    `concurrency` int(11) NOT NULL DEFAULT -1,
     `error_rate` int(11) NOT NULL DEFAULT -1,
     `create_time` timestamp NOT NULL DEFAULT NOW(),
     PRIMARY KEY (`id`)

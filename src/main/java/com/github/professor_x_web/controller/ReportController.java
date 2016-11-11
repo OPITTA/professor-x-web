@@ -153,10 +153,15 @@ public class ReportController {
     Map<String, String> doAddDataAction(HttpServletRequest httpServletRequest) {
         HttpSession httpSession = httpServletRequest.getSession();
         Integer userId = (Integer) httpSession.getAttribute(Config.USER_ID);
+        String topic = httpServletRequest.getParameter("topic");
         String title = httpServletRequest.getParameter("title");
         String data = httpServletRequest.getParameter("data");
         Map<String, String> result = new HashMap<String, String>();
         if (userId == null || userId < 1) {
+            result.put("result", ResultStatus.NO.getName());
+            return result;
+        }
+        if (topic == null || topic.isEmpty()) {
             result.put("result", ResultStatus.NO.getName());
             return result;
         }
@@ -172,12 +177,13 @@ public class ReportController {
         Data d;
         try {
             d = objectMapper.readValue(data, Data.class);
+            d.setTitle(title);
         } catch (IOException ex) {
             logger.error(ex.getMessage());
             result.put("result", ResultStatus.NO.getName());
             return result;
         }
-        ResultStatus rs = reportService.addDataForReport(userId, title, d);
+        ResultStatus rs = reportService.addDataForReport(userId, topic, d);
         result.put(data, rs.getName());
         return result;
     }

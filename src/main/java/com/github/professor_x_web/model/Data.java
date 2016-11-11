@@ -8,6 +8,14 @@ public class Data {
 
     private Integer reportId;
 
+    private String title;
+
+    private Integer concurrency;
+
+    private Integer sampleSize;
+
+    private Integer messageSize;
+
     private Integer averageRt;
 
     private Integer minRt;
@@ -15,8 +23,6 @@ public class Data {
     private Integer maxRt;
 
     private Integer tps;
-
-    private Integer concurrency;
 
     private Integer errorRate;
 
@@ -40,6 +46,38 @@ public class Data {
 
     public void setReportId(Integer reportId) {
         this.reportId = reportId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
+    public Integer getConcurrency() {
+        return concurrency;
+    }
+
+    public void setConcurrency(Integer concurrency) {
+        this.concurrency = concurrency;
+    }
+
+    public Integer getSampleSize() {
+        return sampleSize;
+    }
+
+    public void setSampleSize(Integer sampleSize) {
+        this.sampleSize = sampleSize;
+    }
+
+    public Integer getMessageSize() {
+        return messageSize;
+    }
+
+    public void setMessageSize(Integer messageSize) {
+        this.messageSize = messageSize;
     }
 
     public Integer getAverageRt() {
@@ -72,14 +110,6 @@ public class Data {
 
     public void setTps(Integer tps) {
         this.tps = tps;
-    }
-
-    public Integer getConcurrency() {
-        return concurrency;
-    }
-
-    public void setConcurrency(Integer concurrency) {
-        this.concurrency = concurrency;
     }
 
     public Integer getErrorRate() {
