@@ -16,15 +16,15 @@ public class Data {
 
     private Integer messageSize;
 
-    private Integer averageRt;
+    private Double averageRt;
 
     private Integer minRt;
 
     private Integer maxRt;
 
-    private Integer tps;
+    private Double tps;
 
-    private Integer errorRate;
+    private Double errorRate;
 
     private Date createTime;
 
@@ -80,11 +80,11 @@ public class Data {
         this.messageSize = messageSize;
     }
 
-    public Integer getAverageRt() {
+    public Double getAverageRt() {
         return averageRt;
     }
 
-    public void setAverageRt(Integer averageRt) {
+    public void setAverageRt(Double averageRt) {
         this.averageRt = averageRt;
     }
 
@@ -104,19 +104,19 @@ public class Data {
         this.maxRt = maxRt;
     }
 
-    public Integer getTps() {
+    public Double getTps() {
         return tps;
     }
 
-    public void setTps(Integer tps) {
+    public void setTps(Double tps) {
         this.tps = tps;
     }
 
-    public Integer getErrorRate() {
+    public Double getErrorRate() {
         return errorRate;
     }
 
-    public void setErrorRate(Integer errorRate) {
+    public void setErrorRate(Double errorRate) {
         this.errorRate = errorRate;
     }
 

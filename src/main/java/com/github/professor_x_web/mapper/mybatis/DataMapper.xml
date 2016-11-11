@@ -8,11 +8,11 @@
         <result column="concurrency" property="concurrency" jdbcType="INTEGER" />
         <result column="sample_size" property="sampleSize" jdbcType="INTEGER" />
         <result column="message_size" property="messageSize" jdbcType="INTEGER" />
-        <result column="average_rt" property="averageRt" jdbcType="INTEGER" />
+        <result column="average_rt" property="averageRt" jdbcType="REAL" />
         <result column="min_rt" property="minRt" jdbcType="INTEGER" />
         <result column="max_rt" property="maxRt" jdbcType="INTEGER" />
-        <result column="tps" property="tps" jdbcType="INTEGER" />
-        <result column="error_rate" property="errorRate" jdbcType="INTEGER" />
+        <result column="tps" property="tps" jdbcType="REAL" />
+        <result column="error_rate" property="errorRate" jdbcType="REAL" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
@@ -46,7 +46,7 @@
             and message_size = #{messageSize,jdbcType=INTEGER}
         </if>
         <if test="averageRt != null" >
-            and average_rt = #{averageRt,jdbcType=INTEGER}
+            and average_rt = #{averageRt,jdbcType=REAL}
         </if>
         <if test="minRt != null" >
             and min_rt = #{minRt,jdbcType=INTEGER}
@@ -55,10 +55,10 @@
             and max_rt = #{maxRt,jdbcType=INTEGER}
         </if>
         <if test="tps != null" >
-            and tps = #{tps,jdbcType=INTEGER}
+            and tps = #{tps,jdbcType=REAL}
         </if>
         <if test="errorRate != null" >
-            and error_rate = #{errorRate,jdbcType=INTEGER}
+            and error_rate = #{errorRate,jdbcType=REAL}
         </if>
         <if test="createTime != null" >
             and create_time = #{createTime,jdbcType=TIMESTAMP}
@@ -85,7 +85,7 @@
             and message_size = #{messageSize,jdbcType=INTEGER}
         </if>
         <if test="averageRt != null" >
-            and average_rt = #{averageRt,jdbcType=INTEGER}
+            and average_rt = #{averageRt,jdbcType=REAL}
         </if>
         <if test="minRt != null" >
             and min_rt = #{minRt,jdbcType=INTEGER}
@@ -94,10 +94,10 @@
             and max_rt = #{maxRt,jdbcType=INTEGER}
         </if>
         <if test="tps != null" >
-            and tps = #{tps,jdbcType=INTEGER}
+            and tps = #{tps,jdbcType=REAL}
         </if>
         <if test="errorRate != null" >
-            and error_rate = #{errorRate,jdbcType=INTEGER}
+            and error_rate = #{errorRate,jdbcType=REAL}
         </if>
         <if test="createTime != null" >
             and create_time = #{createTime,jdbcType=TIMESTAMP}
@@ -121,8 +121,8 @@
         )
         values (#{id,jdbcType=INTEGER}, #{reportId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
         #{concurrency,jdbcType=INTEGER}, #{sampleSize,jdbcType=INTEGER}, #{messageSize,jdbcType=INTEGER}, 
-        #{averageRt,jdbcType=INTEGER}, #{minRt,jdbcType=INTEGER}, #{maxRt,jdbcType=INTEGER}, 
-        #{tps,jdbcType=INTEGER}, #{errorRate,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+        #{averageRt,jdbcType=REAL}, #{minRt,jdbcType=INTEGER}, #{maxRt,jdbcType=INTEGER}, 
+        #{tps,jdbcType=REAL}, #{errorRate,jdbcType=REAL}, #{createTime,jdbcType=TIMESTAMP}
         )
     </insert>
     <insert id="insertSelective" parameterType="com.github.professor_x_web.model.Data" useGeneratedKeys="true" keyProperty="id">
@@ -185,7 +185,7 @@
                 #{messageSize,jdbcType=INTEGER},
             </if>
             <if test="averageRt != null" >
-                #{averageRt,jdbcType=INTEGER},
+                #{averageRt,jdbcType=REAL},
             </if>
             <if test="minRt != null" >
                 #{minRt,jdbcType=INTEGER},
@@ -194,10 +194,10 @@
                 #{maxRt,jdbcType=INTEGER},
             </if>
             <if test="tps != null" >
-                #{tps,jdbcType=INTEGER},
+                #{tps,jdbcType=REAL},
             </if>
             <if test="errorRate != null" >
-                #{errorRate,jdbcType=INTEGER},
+                #{errorRate,jdbcType=REAL},
             </if>
             <if test="createTime != null" >
                 #{createTime,jdbcType=TIMESTAMP},
@@ -223,7 +223,7 @@
                 message_size = #{messageSize,jdbcType=INTEGER},
             </if>
             <if test="averageRt != null" >
-                average_rt = #{averageRt,jdbcType=INTEGER},
+                average_rt = #{averageRt,jdbcType=REAL},
             </if>
             <if test="minRt != null" >
                 min_rt = #{minRt,jdbcType=INTEGER},
@@ -232,10 +232,10 @@
                 max_rt = #{maxRt,jdbcType=INTEGER},
             </if>
             <if test="tps != null" >
-                tps = #{tps,jdbcType=INTEGER},
+                tps = #{tps,jdbcType=REAL},
             </if>
             <if test="errorRate != null" >
-                error_rate = #{errorRate,jdbcType=INTEGER},
+                error_rate = #{errorRate,jdbcType=REAL},
             </if>
             <if test="createTime != null" >
                 create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -250,11 +250,11 @@
         concurrency = #{concurrency,jdbcType=INTEGER},
         sample_size = #{sampleSize,jdbcType=INTEGER},
         message_size = #{messageSize,jdbcType=INTEGER},
-        average_rt = #{averageRt,jdbcType=INTEGER},
+        average_rt = #{averageRt,jdbcType=REAL},
         min_rt = #{minRt,jdbcType=INTEGER},
         max_rt = #{maxRt,jdbcType=INTEGER},
-        tps = #{tps,jdbcType=INTEGER},
-        error_rate = #{errorRate,jdbcType=INTEGER},
+        tps = #{tps,jdbcType=REAL},
+        error_rate = #{errorRate,jdbcType=REAL},
         create_time = #{createTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=INTEGER}
     </update>

@@ -173,6 +173,7 @@ public class ReportController {
             result.put("result", ResultStatus.NO.getName());
             return result;
         }
+        logger.info("topic = {}, title = {}, data = {}", topic, title, data);
         ObjectMapper objectMapper = new ObjectMapper();
         Data d;
         try {
@@ -184,7 +185,7 @@ public class ReportController {
             return result;
         }
         ResultStatus rs = reportService.addDataForReport(userId, topic, d);
-        result.put(data, rs.getName());
+        result.put("result", rs.getName());
         return result;
     }
 }

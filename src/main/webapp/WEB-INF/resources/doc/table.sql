@@ -92,11 +92,11 @@ CREATE TABLE IF NOT EXISTS `data` (
     `concurrency` int(11) NOT NULL DEFAULT -1,
     `sample_size` int(11) NOT NULL DEFAULT -1,
     `message_size` int(11) NOT NULL DEFAULT -1,
-    `average_rt` int(11) NOT NULL DEFAULT -1,
+    `average_rt` float(11) NOT NULL DEFAULT 0.0,
     `min_rt` int(11) NOT NULL DEFAULT -1,
     `max_rt` int(11) NOT NULL DEFAULT -1,
-    `tps` int(11) NOT NULL DEFAULT -1,
-    `error_rate` int(11) NOT NULL DEFAULT -1,
+    `tps` float(11) NOT NULL DEFAULT 0.0,
+    `error_rate` float(11) NOT NULL DEFAULT 0.0,
     `create_time` timestamp NOT NULL DEFAULT NOW(),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
