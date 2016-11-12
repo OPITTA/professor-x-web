@@ -20,6 +20,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.zip.GZIPInputStream;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.comparator.ComparableComparator;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -151,41 +151,156 @@ public class ReportController {
             model.addAttribute("reportId", reportId);
             List<Data> datas = reportService.getDatabyUserIdAndReportId(userId, reportId, startTime, endTime);
             if (datas != null && !datas.isEmpty()) {
-                Collections.sort(datas, new Comparator<Data>() {
-
-                    public int compare(Data o1, Data o2) {
-                        return o1.getConcurrency() - o2.getConcurrency();
-                    }
-                });
-                List<Integer> concurrencys = new ArrayList<Integer>();
-                List<Double> tpses = new ArrayList<Double>();
-                List<Double> averageRts = new ArrayList<Double>();
-                List<Integer> minRts = new ArrayList<Integer>();
-                List<Integer> maxRts = new ArrayList<Integer>();
-                List<Double> errorRates = new ArrayList<Double>();
+                Map<String, Chart> titleAndChart = new HashMap<String, Chart>();
                 for (Data data : datas) {
-                    concurrencys.add(data.getConcurrency());
-                    tpses.add(data.getTps());
-                    averageRts.add(data.getAverageRt());
-                    minRts.add(data.getMinRt());
-                    maxRts.add(data.getMaxRt());
-                    errorRates.add(data.getErrorRate());
+                    if (!titleAndChart.containsKey(data.getTitle())) {
+                        titleAndChart.put(data.getTitle(), new Chart(data.getReportId(), data.getTitle()));
+                    }
+                    Chart chart = titleAndChart.get(data.getTitle());
+                    chart.addDatas(data);
                 }
                 ObjectMapper objectMapper = new ObjectMapper();
-                try {
-                    model.addAttribute("concurrencys", objectMapper.writeValueAsString(concurrencys));
-                    model.addAttribute("tpses", objectMapper.writeValueAsString(tpses));
-                    model.addAttribute("averageRts", objectMapper.writeValueAsString(averageRts));
-                    model.addAttribute("minRts", objectMapper.writeValueAsString(minRts));
-                    model.addAttribute("maxRts", objectMapper.writeValueAsString(maxRts));
-                    model.addAttribute("errorRates", objectMapper.writeValueAsString(errorRates));
-                } catch (IOException e) {
-                    logger.error(e.getMessage());
+                for (Entry<String, Chart> e : titleAndChart.entrySet()) {
+                    Chart chart = e.getValue();
+                    List<Integer> concurrencys = new ArrayList<Integer>();
+                    List<Double> tpses = new ArrayList<Double>();
+                    List<Double> averageRts = new ArrayList<Double>();
+                    List<Integer> minRts = new ArrayList<Integer>();
+                    List<Integer> maxRts = new ArrayList<Integer>();
+                    List<Double> errorRates = new ArrayList<Double>();
+                    List<Data> idatas = chart.getDatas();
+                    Collections.sort(idatas, new Comparator<Data>() {
+
+                        public int compare(Data o1, Data o2) {
+                            return o1.getConcurrency() - o2.getConcurrency();
+                        }
+                    });
+                    for (Data data : idatas) {
+                        concurrencys.add(data.getConcurrency());
+                        tpses.add(data.getTps());
+                        averageRts.add(data.getAverageRt());
+                        minRts.add(data.getMinRt());
+                        maxRts.add(data.getMaxRt());
+                        errorRates.add(data.getErrorRate());
+                    }
+                    try {
+                        chart.setConcurrencys(objectMapper.writeValueAsString(concurrencys));
+                        chart.setTpses(objectMapper.writeValueAsString(tpses));
+                        chart.setAverageRts(objectMapper.writeValueAsString(averageRts));
+                        chart.setMinRts(objectMapper.writeValueAsString(minRts));
+                        chart.setMaxRts(objectMapper.writeValueAsString(maxRts));
+                        chart.setErrorRates(objectMapper.writeValueAsString(errorRates));
+                    } catch (IOException ioe) {
+                        logger.error(ioe.getMessage());
+                    }
                 }
+                model.addAttribute("charts", titleAndChart.values());
             }
-            model.addAttribute("datas", datas);
         }
         return "/report/chart";
+    }
+
+    public static class Chart {
+
+        private Integer reportId;
+        private String title;
+        private List<Data> datas = new ArrayList<Data>();
+        private String concurrencys;
+        private String tpses;
+        private String averageRts;
+        private String minRts;
+        private String maxRts;
+        private String errorRates;
+
+        public void setReportId(Integer reportId) {
+            this.reportId = reportId;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public void setDatas(List<Data> datas) {
+            this.datas = datas;
+        }
+
+        public void setConcurrencys(String concurrencys) {
+            this.concurrencys = concurrencys;
+        }
+
+        public void setTpses(String tpses) {
+            this.tpses = tpses;
+        }
+
+        public void setAverageRts(String averageRts) {
+            this.averageRts = averageRts;
+        }
+
+        public void setMinRts(String minRts) {
+            this.minRts = minRts;
+        }
+
+        public void setMaxRts(String maxRts) {
+            this.maxRts = maxRts;
+        }
+
+        public void setErrorRates(String errorRates) {
+            this.errorRates = errorRates;
+        }
+
+        public Chart() {
+
+        }
+
+        public Chart(String title) {
+            this.title = title;
+        }
+
+        public Chart(Integer reportId, String title) {
+            this.reportId = reportId;
+            this.title = title;
+        }
+
+        public void addDatas(Data data) {
+            this.datas.add(data);
+        }
+
+        public Integer getReportId() {
+            return reportId;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public List<Data> getDatas() {
+            return datas;
+        }
+
+        public String getConcurrencys() {
+            return concurrencys;
+        }
+
+        public String getTpses() {
+            return tpses;
+        }
+
+        public String getAverageRts() {
+            return averageRts;
+        }
+
+        public String getMinRts() {
+            return minRts;
+        }
+
+        public String getMaxRts() {
+            return maxRts;
+        }
+
+        public String getErrorRates() {
+            return errorRates;
+        }
+
     }
 
     @RequestMapping(value = "do_add_data", method = RequestMethod.POST)

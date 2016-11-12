@@ -23,18 +23,22 @@
     </div>
   </form>
 </div>
-    #if ($datas && $datas.size() > 0)
-    <div class="row-fluid">
-        
-    </div>
-    <div id="iamChart" style="height:400px" class="row-fluid">
-    </div>
+    #if ($charts && $charts.size() > 0)
+        #set($i=1)
+        #foreach ($chart in $charts)
+            <div class="row-fluid">
+                <span class="label label-success">$chart.title</span>
+            </div>
+            <div id="iamChart_$i" style="height:400px" class="row-fluid">
+            #set($i = $i + 1)
+            </div>
+        #end
     #else
-    <div class="row-fluid">
-        <div class="hero-unit">
-            <h2>没有和选择条件相匹配的结果</h2>
+        <div class="row-fluid">
+            <div class="hero-unit">
+                <h2>没有和选择条件相匹配的结果</h2>
+            </div>
         </div>
-    </div>
     #end
 #else
 <div class="row-fluid">
@@ -46,14 +50,14 @@
 <script language="javascript">
     $(document).ready(function(){
             $("#find_form").validate({
-                   rules: {
-                       start_time: {
-                           required: true,
-                       },
-                       end_time: {
-                           required: true
-                       }
-                   }
+                rules: {
+                    start_time: {
+                        required: true,
+                    },
+                    end_time: {
+                        required: true
+                    }
+                }
              });
             var duration = 0;
             #if ($!duration)
@@ -71,7 +75,9 @@
 </script>
 <script src="/professor_x_web/js/echarts-all.js"></script>
 <script type="text/javascript">
-    var iamChart = echarts.init(document.getElementById('iamChart'));
+    #set($i=1)
+    #foreach ($chart in $charts)
+    var iamChart_$i = echarts.init(document.getElementById('iamChart_$i'));
     option = {
         tooltip : {
             trigger: 'axis'
@@ -94,7 +100,7 @@
                 {
                     type : 'category',
                     boundaryGap : false,
-                    data : $!concurrencys
+                    data : $!chart.concurrencys
                 }
             ],
             yAxis : [
@@ -107,34 +113,37 @@
                     name:'TPS',
                     type:'line',
                     stack: '总量',
-                    data:$!tpses
+                    data:$!chart.tpses
                 },
                 {
                     name:'平均RT',
                     type:'line',
                     stack: '总量',
-                    data:$!averageRts
+                    data:$!chart.averageRts
                 },
                 {
                     name:'最小RT',
                     type:'line',
                     stack: '总量',
-                    data:$!minRts
+                    data:$!chart.minRts
                 },
                 {
                     name:'最大RT',
                     type:'line',
                     stack: '总量',
-                    data:$!maxRts
+                    data:$!chart.maxRts
                 },
                 {
                     name:'错误率',
                     type:'line',
                     stack: '总量',
-                    data:$!errorRates
+                    data:$!chart.errorRates
                 }
             ]
         };
-        iamChart.setOption(option);
+    var iamC = iamChart_$i;
+    iamC.setOption(option);
+    #set($i=$i+1)
+    #end
     </script>
 #parse("shared/footer.vm")
