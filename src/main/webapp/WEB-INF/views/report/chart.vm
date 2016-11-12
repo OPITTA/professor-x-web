@@ -25,40 +25,9 @@
 </div>
     #if ($datas && $datas.size() > 0)
     <div class="row-fluid">
-        <table class="table">
-        <thead>
-          <tr>
-              <th>ID</th>
-              <th>标题</th>
-              <th>样本(g)</th>
-              <th>消息(k|m|g)</th>
-              <th>并发(g)</th>
-              <th>TPS(g/s)</th>
-              <th>aveRT(ms)</th>
-              <th>minRT(ms)</th>
-              <th>max(ms)</th>
-              <th>错误率(%)</th>
-              <th>时间</th>
-          </tr>
-        </thead>
-        <tbody>
-            #foreach ($data in $datas)
-            <tr>
-              <td>ID</th>
-              <td>$!data.title</th>
-              <td>$!data.sampleSize</th>
-              <td>#if($!data.messageSize == -1)无#else$!data.messageSize#end</th>
-              <td>$!data.concurrency</th>
-              <td>$!data.tps</th>
-              <td>$!data.averageRt</th>
-              <td>$!data.minRt</th>
-              <td>$!data.maxRt</th>
-              <td>$!data.errorRate</th>
-              <td>$!DateUtil.formatForDate1($!data.createTime)</td>
-            </tr>
-            #end
-        </tbody>
-        </table>
+        
+    </div>
+    <div id="iamChart" style="height:400px" class="row-fluid">
     </div>
     #else
     <div class="row-fluid">
@@ -100,4 +69,72 @@
             $('#end_time').datepicker();
     });
 </script>
+<script src="/professor_x_web/js/echarts-all.js"></script>
+<script type="text/javascript">
+    var iamChart = echarts.init(document.getElementById('iamChart'));
+    option = {
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['TPS','平均RT','最小RT','最大RT','错误率']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : $!concurrencys
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'TPS',
+                    type:'line',
+                    stack: '总量',
+                    data:$!tpses
+                },
+                {
+                    name:'平均RT',
+                    type:'line',
+                    stack: '总量',
+                    data:$!averageRts
+                },
+                {
+                    name:'最小RT',
+                    type:'line',
+                    stack: '总量',
+                    data:$!minRts
+                },
+                {
+                    name:'最大RT',
+                    type:'line',
+                    stack: '总量',
+                    data:$!maxRts
+                },
+                {
+                    name:'错误率',
+                    type:'line',
+                    stack: '总量',
+                    data:$!errorRates
+                }
+            ]
+        };
+        iamChart.setOption(option);
+    </script>
 #parse("shared/footer.vm")

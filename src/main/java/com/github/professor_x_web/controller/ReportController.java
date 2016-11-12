@@ -15,6 +15,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +31,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.comparator.ComparableComparator;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -147,6 +150,39 @@ public class ReportController {
             model.addAttribute("endTime", endTime);
             model.addAttribute("reportId", reportId);
             List<Data> datas = reportService.getDatabyUserIdAndReportId(userId, reportId, startTime, endTime);
+            if (datas != null && !datas.isEmpty()) {
+                Collections.sort(datas, new Comparator<Data>() {
+
+                    public int compare(Data o1, Data o2) {
+                        return o1.getConcurrency() - o2.getConcurrency();
+                    }
+                });
+                List<Integer> concurrencys = new ArrayList<Integer>();
+                List<Double> tpses = new ArrayList<Double>();
+                List<Double> averageRts = new ArrayList<Double>();
+                List<Integer> minRts = new ArrayList<Integer>();
+                List<Integer> maxRts = new ArrayList<Integer>();
+                List<Double> errorRates = new ArrayList<Double>();
+                for (Data data : datas) {
+                    concurrencys.add(data.getConcurrency());
+                    tpses.add(data.getTps());
+                    averageRts.add(data.getAverageRt());
+                    minRts.add(data.getMinRt());
+                    maxRts.add(data.getMaxRt());
+                    errorRates.add(data.getErrorRate());
+                }
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    model.addAttribute("concurrencys", objectMapper.writeValueAsString(concurrencys));
+                    model.addAttribute("tpses", objectMapper.writeValueAsString(tpses));
+                    model.addAttribute("averageRts", objectMapper.writeValueAsString(averageRts));
+                    model.addAttribute("minRts", objectMapper.writeValueAsString(minRts));
+                    model.addAttribute("maxRts", objectMapper.writeValueAsString(maxRts));
+                    model.addAttribute("errorRates", objectMapper.writeValueAsString(errorRates));
+                } catch (IOException e) {
+                    logger.error(e.getMessage());
+                }
+            }
             model.addAttribute("datas", datas);
         }
         return "/report/chart";
