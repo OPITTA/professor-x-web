@@ -30,10 +30,10 @@
     <label>状态</label>
     #springBind("report.status")
     <select id="${status.expression}" name="${status.expression}">
-      <option #if($!status.value==$NEW.id)selected="selected"#end value=$NEW.id class="badge badge-success">$NEW.name</option>
-      <option #if($!status.value==$DOING.id)selected="selected"#end value=$DOING.id class="badge badge-important">$DOING.name</option>
-      <option #if($!status.value==$DONE.id)selected="selected"#end value=$DONE.id class="badge badge-info">$DONE.name</option>
-      <option #if($!status.value==$SHARED.id)selected="selected"#end value=$SHARED.id class="badge badge-warning">$SHARED.name</option>
+      <option #if($!status.value==$NEW.id)selected="selected"#end value=$NEW.id>$NEW.name</option>
+      <option #if($!status.value==$DOING.id)selected="selected"#end value=$DOING.id>$DOING.name</option>
+      <option #if($!status.value==$DONE.id)selected="selected"#end value=$DONE.id>$DONE.name</option>
+      <option #if($!status.value==$SHARED.id)selected="selected"#end value=$SHARED.id>$SHARED.name</option>
     </select>
     #if ($!{status.errorMessage}) <p class="text-error">$!{status.errorMessage}</p> #end
     <label>方案</label>
