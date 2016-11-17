@@ -163,11 +163,17 @@ public class ReportController {
                 for (Entry<String, Chart> e : titleAndChart.entrySet()) {
                     Chart chart = e.getValue();
                     List<Integer> concurrencys = new ArrayList<Integer>();
+                    concurrencys.add(0);
                     List<Double> tpses = new ArrayList<Double>();
+                    tpses.add(0.0);
                     List<Double> averageRts = new ArrayList<Double>();
+                    averageRts.add(0.0);
                     List<Integer> minRts = new ArrayList<Integer>();
+                    minRts.add(0);
                     List<Integer> maxRts = new ArrayList<Integer>();
+                    maxRts.add(0);
                     List<Double> errorRates = new ArrayList<Double>();
+                    errorRates.add(0.0);
                     List<Data> idatas = chart.getDatas();
                     Collections.sort(idatas, new Comparator<Data>() {
 
