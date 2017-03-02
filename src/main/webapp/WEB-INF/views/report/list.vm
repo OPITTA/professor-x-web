@@ -39,7 +39,7 @@
         #end
         </td>
         <td>$!DateUtil.formatForDate1($!report.createTime)</td>
-        <td><a href="/professor_x_web/report/add/$report.id">详情</a></td>
+        <td><a href="/professor_x_web/report/add/$report.id">修改</a></td>
     </tr>
     #set($i = $i + 1)
     #end
