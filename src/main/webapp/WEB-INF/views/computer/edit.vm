@@ -54,7 +54,8 @@
     </div>
     <div class="control-group">
         <div class="controls">
-        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
+        <button id="submit" type="text" class="btn btn-success">保存</button>
+        <a href="/professor_x_web/computer/list" class="btn btn-link">返回</a>
         </div>
     </div>
 </fieldset>
@@ -94,7 +95,8 @@
     </div>
     <div class="control-group">
         <div class="controls">
-        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
+        <button id="submit" type="text" class="btn btn-success">保存</button>
+        <a href="/professor_x_web/computer/list" class="btn btn-link">返回</a>
         </div>
     </div>
 </fieldset>
@@ -142,7 +144,8 @@
     </div>
     <div class="control-group">
         <div class="controls">
-        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
+        <button id="submit" type="text" class="btn btn-success">保存</button>
+        <a href="/professor_x_web/computer/list" class="btn btn-link">返回</a>
         </div>
     </div>
 </fieldset>
@@ -182,7 +185,8 @@
     </div>
     <div class="control-group">
         <div class="controls">
-        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
+        <button id="submit" type="text" class="btn btn-success">保存</button>
+        <a href="/professor_x_web/computer/list" class="btn btn-link">返回</a>
         </div>
     </div>
 </fieldset>
@@ -222,7 +226,8 @@
     </div>
     <div class="control-group">
         <div class="controls">
-        <button id="submit" type="text" class="btn btn-large btn-primary">保存</button>
+        <button id="submit" type="text" class="btn btn-success">保存</button>
+        <a href="/professor_x_web/computer/list" class="btn btn-link">返回</a>
         </div>
     </div>
 </fieldset>
